@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dr. Muhammad Kashif | Quantum Machine Learning & Quantum Algorithms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio and research profile of Muhammad Kashif – Quantum Machine Learning & Hybrid Quantum Neural Networks." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.2);
+      --accent-2: #22c55e;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --card: #0f172a;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --radius-xl: 18px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.7);
+      --transition-fast: 180ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 40%, #000 100%);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 26px 18px 60px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.75), transparent);
+      margin-bottom: 10px;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 18px 14px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, #22c55e 0, #4f46e5 40%, #0f172a 100%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 17px;
+      box-shadow: 0 0 0 1px rgba(148,163,184,0.4), 0 14px 30px rgba(15,23,42,0.9);
+    }
+
+    .nav-title-main {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 14px;
+    }
+
+    .nav-title-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(to right, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+      margin-top: 32px;
+      margin-bottom: 40px;
+    }
+
+    .hero-main {
+      position: relative;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px 3px 3px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.9);
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+
+    .pill-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: conic-gradient(from 140deg, #22c55e, #4f46e5, #22c55e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .pill-dot::before {
+      content: "";
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: inherit;
+      border: 1px solid rgba(34,197,94,0.3);
+      opacity: 0.5;
+    }
+
+    .pill-dot-inner {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #020617;
+      box-shadow: 0 0 0 2px rgba(15,23,42,0.95);
+    }
+
+    .pill-label {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .pill-sub {
+      color: var(--muted);
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, #e5e7eb, #a5b4fc, #4ade80);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 570px;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15,23,42,0.85);
+      color: #e5e7eb;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      font-size: 13px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 30px rgba(15,23,42,0.8);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.9);
+    }
+
+    .btn-ghost {
+      background: rgba(15,23,42,0.7);
+      border-color: rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,0.95);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(15,23,42,0.8);
+    }
+
+    .btn-icon {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .hero-side {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-card {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      border-radius: 26px;
+      padding: 18px 18px 16px;
+      background: radial-gradient(circle at top left, rgba(79,70,229,0.35), transparent 55%), radial-gradient(circle at bottom right, rgba(34,197,94,0.3), transparent 60%), #020617;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: radial-gradient(circle at 0 0, #4ade80, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 700;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.7), 0 16px 36px rgba(15,23,42,0.9);
+    }
+
+    .hero-card-name {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .hero-card-role {
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .hero-card-inst {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-card-metrics {
+      display: flex;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .metric-pill {
+      flex: 1;
+      padding: 8px 9px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15,23,42,0.9);
+      font-size: 11px;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-value {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .hero-card-footer {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.15);
+    }
+
+    .sections {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-top: 10px;
+    }
+
+    .section {
+      padding: 20px 18px 22px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(79,70,229,0.18), transparent 58%), radial-gradient(circle at bottom right, rgba(34,197,94,0.22), transparent 60%), var(--bg-alt);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 14px 32px rgba(15,23,42,0.85);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .section-tagline {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .section-chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+      color: var(--muted);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 14px;
+      margin-bottom: 9px;
+      color: #e5e7eb;
+    }
+
+    .about-text strong {
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .about-highlight {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .about-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 7px;
+    }
+
+    .about-card {
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      background: rgba(15,23,42,0.9);
+      font-size: 12px;
+    }
+
+    .about-card-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .pill-item {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      padding: 11px 11px 10px;
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15,23,42,0.9);
+      font-size: 13px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 35px rgba(15,23,42,0.95);
+      border-color: rgba(129, 140, 248, 0.9);
+      background: radial-gradient(circle at top, rgba(79,70,229,0.3), rgba(15,23,42,0.95));
+    }
+
+    .card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .card-body {
+      font-size: 12px;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .card-tag {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+      color: var(--muted);
+    }
+
+    .timeline {
+      border-left: 1px dashed rgba(148,163,184,0.6);
+      padding-left: 12px;
+      margin-top: 4px;
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -18px;
+      top: 5px;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #4f46e5;
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.25);
+    }
+
+    .tl-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .tl-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .tl-body {
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .pub-item {
+      padding-bottom: 7px;
+      border-bottom: 1px dashed rgba(51,65,85,0.9);
+    }
+
+    .pub-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .pub-title {
+      font-weight: 500;
+      color: #e5e7eb;
+      margin-bottom: 3px;
+    }
+
+    .pub-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .pub-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      padding: 10px 9px 9px;
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.9);
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 35px rgba(15,23,42,0.95);
+      border-color: rgba(52,211,153,0.9);
+      background: radial-gradient(circle at bottom, rgba(34,197,94,0.35), rgba(15,23,42,0.95));
+    }
+
+    .project-title {
+      font-weight: 600;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 3px;
+    }
+
+    .project-link {
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .contact-text p {
+      margin-bottom: 7px;
+      color: #e5e7eb;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .contact-chip {
+      font-size: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-chip span {
+      font-size: 15px;
+    }
+
+    .footer {
+      margin-top: 26px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      padding-bottom: 10px;
+    }
+
+    .footer a {
+      color: #a5b4fc;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-side {
+        order: -1;
+      }
+      .about-layout,
+      .grid-2,
+      .projects-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner {
+        padding-inline: 14px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .page {
+        padding-inline: 14px;
+      }
+      .hero-card {
+        max-width: 100%;
+      }
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .section {
+        padding-inline: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="nav-logo">MK</div>
+        <div>
+          <div class="nav-title-main">Muhammad Kashif</div>
+          <div class="nav-title-sub">Quantum Machine Learning</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#research" class="nav-link">Research</a>
+        <a href="#publications" class="nav-link">Publications</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-pill">
+          <div class="pill-dot">
+            <div class="pill-dot-inner"></div>
+          </div>
+          <span class="pill-label">Exploring quantum prospects in ML</span>
+          <span class="pill-sub"> · QML · Hybrid Quantum Neural Networks · Noise-aware QNN design</span>
+        </div>
+
+        <h1 class="hero-title">
+          Hi, I’m <span class="hero-gradient">Muhammad Kashif</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Postdoctoral Research Associate at NYU Abu Dhabi & Research Team Lead at eBRAIN Lab.  
+          I work at the intersection of <strong>quantum computing</strong>, <strong>machine learning</strong>, and
+          <strong>hardware-aware hybrid neural architectures</strong>.
+        </p>
+
+        <div class="hero-tags">
+          <span class="tag">Quantum Machine Learning (QML)</span>
+          <span class="tag">Hybrid Quantum Neural Networks</span>
+          <span class="tag">Noise-resilient QNNs</span>
+          <span class="tag">Quantum foundations for ML</span>
+          <span class="tag">Finance applications</span>
+        </div>
+
+        <div class="hero-cta">
+          <!-- TODO: update the links below with your actual URLs -->
+          <a href="cv.pdf" class="btn-primary" target="_blank" rel="noreferrer">
+            <span class="btn-icon">📄</span> View CV
+          </a>
+          <a href="https://scholar.google.com/citations?user=OqsN2QYAAAAJ&hl=en" class="btn-ghost" target="_blank" rel="noreferrer">
+            <span class="btn-icon">🔗</span> Google Scholar
+          </a>
+
+          <a href="https://www.linkedin.com/in/muhammad-kashif-29191571/" class="btn-ghost" target="_blank" rel="noreferrer">
+            <span class="btn-icon">💼</span> LinkedIn
+          </a>
+
+          <a href="https://www.scopus.com/authid/detail.uri?authorId=57197631441&origin=resultslist" class="btn-ghost" target="_blank" rel="noreferrer">
+            <span class="btn-icon">📘</span> Scopus
+          </a>
+          
+          <!-- <a href="https://github.com" class="btn-ghost" target="_blank" rel="noreferrer">
+            <span class="btn-icon">💻</span> GitHub
+          </a> -->
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="avatar">Q</div>
+            <div>
+              <div class="hero-card-name">Quantum ML & Hybrid AI</div>
+              <div class="hero-card-role">Postdoctoral Research · CQTS, NYU Abu Dhabi</div>
+              <div class="hero-card-inst">Research Team Lead · eBRAIN Lab</div>
+            </div>
+          </div>
+
+          <div class="hero-card-metrics">
+            <div class="metric-pill">
+              <div class="metric-label">Focus</div>
+              <div class="metric-value">QNN Trainability</div>
+            </div>
+            <div class="metric-pill">
+              <div class="metric-label">Era</div>
+              <div class="metric-value">NISQ Hardware</div>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-title">PhD in Computer Science</div>
+              <div class="tl-meta">Hamad Bin Khalifa University · 2019–2023</div>
+              <div class="tl-body">Thesis on trainability & quantum advantages in QNNs.</div>
+            </div>
+          </div>
+
+          <div class="hero-card-footer">
+            <div class="status-dot"></div>
+            <span>Open to collaborations in QML, hybrid networks & quantum finance.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="sections">
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">About</div>
+            <div class="section-tagline">Background, interests & current role</div>
+          </div>
+          <span class="section-chip">Research · Teaching · Leadership</span>
+        </div>
+
+        <div class="about-layout">
+          <div class="about-text">
+            <p>
+              I am a <strong>Postdoctoral Research Associate</strong> at the 
+              <strong>Center for Quantum and Topological Systems (CQTS)</strong>, 
+              New York University Abu Dhabi, and a <strong>Research Team Lead</strong> at the 
+              <strong>eBRAIN Lab</strong>.
+            </p>
+
+            <p>
+              My work focuses on <strong>Quantum Machine Learning</strong>, with a particular interest in
+              <strong>noise-resilient Quantum Neural Networks</strong>, <strong>hybrid quantum–classical
+              architectures</strong>, and <strong>expressibility vs trainability trade-offs</strong>.
+            </p>
+
+            <p>
+              I am also keen on <strong>hardware-aware design</strong> of QNNs, analytical cost modeling of
+              quantum circuits, and benchmarking hybrid models against classical baselines in realistic
+              settings—especially in the context of <strong>finance</strong> and other high-impact domains.
+            </p>
+
+            <div class="about-highlight">
+              Previously: BSc in Electrical (Electronics) Engineering · COMSATS Pakistan ·  
+              MSc in Electronics & Computer Engineering · Istanbul Şehir University.
+            </div>
+
+            <div class="about-badges">
+              <span class="tag">Quantum advantage (myth vs reality?)</span>
+              <span class="tag">Hybrid NAS pipelines</span>
+              <span class="tag">Circuit expressibility analysis</span>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-title">Core Topics</div>
+            <div class="pill-list">
+              <span class="pill-item">Barren plateaus & trainability</span>
+              <span class="pill-item">Noise-aware QNN design</span>
+              <span class="pill-item">Hybrid Quantum Neural Networks</span>
+              <span class="pill-item">Quantum cost modeling & FLOPs</span>
+              <span class="pill-item">Quantum optimization & finance</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESEARCH -->
+      <section id="research" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Research</div>
+            <div class="section-tagline">Selected directions & themes</div>
+          </div>
+          <span class="section-chip">QML · Hybrid Networks · Foundations</span>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-label">Direction</div>
+            <div class="card-title">Trainability & expressibility in QNNs</div>
+            <div class="card-body">
+              Studying how circuit depth, qubit count, and entanglement patterns affect both
+              <strong>expressibility</strong> and <strong>trainability</strong>, with a focus on
+              barren plateaus and noise-induced degradation.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">Barren plateaus</span>
+              <span class="card-tag">Expressibility metrics</span>
+              <span class="card-tag">Depth vs width</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-label">Direction</div>
+            <div class="card-title">Hybrid quantum–classical architectures</div>
+            <div class="card-body">
+              Evaluating when and how quantum layers offer a tangible advantage within hybrid networks,
+              balancing quantum cost, classical FLOPs, and overall accuracy.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">Hybrid QNNs</span>
+              <span class="card-tag">Hardware-aware NAS</span>
+              <span class="card-tag">FLOPs vs quantum cost</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-label">Direction</div>
+            <div class="card-title">Noise-resilient QML</div>
+            <div class="card-body">
+              Designing QNNs and training strategies that are intrinsically robust to NISQ hardware noise,
+              and exploring how noise can sometimes be harnessed constructively.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">NISQ era</span>
+              <span class="card-tag">Noise-aware training</span>
+              <span class="card-tag">Quantum mitigation</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-label">Direction</div>
+            <div class="card-title">Quantum computing for finance</div>
+            <div class="card-body">
+              Surveying and developing QML and quantum optimization methods for portfolio optimization,
+              credit risk modelling, and other financial decision-making tasks.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">Portfolio optimization</span>
+              <span class="card-tag">Quantum optimization</span>
+              <span class="card-tag">QML for finance</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PUBLICATIONS -->
+      <section id="publications" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Publications</div>
+            <div class="section-tagline">A short selection – more on Google Scholar</div>
+          </div>
+          <span class="section-chip">Peer-reviewed · Preprints · Ongoing</span>
+        </div>
+
+        <div class="pub-list">
+          <!-- EXAMPLE ITEMS – replace with your own -->
+          <article class="pub-item">
+            <div class="pub-title">
+              HQNET: Harnessing Quantum Noise for Effective Training of Quantum Neural Networks in the NISQ Era
+            </div>
+            <div class="pub-meta">
+              M. Kashif, et al. · IEEE Transactions on Emerging Topics in Computing (under review)
+            </div>
+            <div class="card-tags">
+              <span class="pub-badge">QNNs</span>
+              <span class="pub-badge">Noise-resilience</span>
+              <span class="pub-badge">NISQ</span>
+            </div>
+          </article>
+
+          <article class="pub-item">
+            <div class="pub-title">
+              NRQNN: The Role of Observable Selection in Noise-Resilient Quantum Neural Networks
+            </div>
+            <div class="pub-meta">
+              Proc. of ICEQT’24 · World Congress in Computer Science, Computer Engineering & Applied Computing
+            </div>
+            <div class="card-tags">
+              <span class="pub-badge">QML</span>
+              <span class="pub-badge">Observables</span>
+            </div>
+          </article>
+
+          <article class="pub-item">
+            <div class="pub-title">
+              Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?
+            </div>
+            <div class="pub-meta">
+              Manuscript · Hybrid networks, FLOPs vs quantum cost, and practical advantage assessment.
+            </div>
+            <div class="card-tags">
+              <span class="pub-badge">Hybrid QNNs</span>
+              <span class="pub-badge">Cost modelling</span>
+            </div>
+          </article>
+
+          <!-- Add more items following the same structure -->
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Projects</div>
+            <div class="section-tagline">Code, experiments & open-source</div>
+          </div>
+          <span class="section-chip">GitHub · Reproducible pipelines</span>
+        </div>
+
+        <div class="projects-grid">
+          <!-- PROJECT 1 -->
+          <article class="project-card">
+            <div class="project-title">Hybrid NAS for QML</div>
+            <div class="project-meta">PyTorch · PennyLane · NSGA-II</div>
+            <div>
+              Multi-objective search over hybrid quantum–classical architectures, optimizing accuracy,
+              FLOPs, and analytical quantum cost.
+            </div>
+            <div class="project-links">
+              <!-- Replace # with your repo link -->
+              <a href="#" class="project-link" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article class="project-card">
+            <div class="project-title">Expressibility Toolkit</div>
+            <div class="project-meta">Python · Qiskit/PennyLane</div>
+            <div>
+              Tools to compute expressibility, entanglement, and distribution distances for parameterized
+              quantum circuits at scale.
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+
+          <!-- PROJECT 3 -->
+          <article class="project-card">
+            <div class="project-title">Quantum Finance Demos</div>
+            <div class="project-meta">QML · Optimization</div>
+            <div>
+              Small-scale demonstrations of quantum optimization and QML pipelines for portfolio and risk
+              problems.
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Contact</div>
+            <div class="section-tagline">Let’s discuss research, supervision, or collaborations</div>
+          </div>
+          <span class="section-chip">Email preferred</span>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-text">
+            <p>
+              If you’re interested in <strong>collaborating</strong>, discussing <strong>QML / hybrid
+              architectures</strong>, or exploring <strong>quantum prospects in different application such as healthcare, transport, finance etc</strong>, feel free
+              to reach out.
+            </p>
+            <p>
+              I am also happy to connect regarding <strong>student projects</strong>, <strong>talks</strong>,
+              or <strong>reviewing opportunities</strong> aligned with my research areas.
+            </p>
+            <div class="contact-methods">
+              <!-- Replace these placeholders with real data -->
+              <div class="contact-chip">
+                <span>📧</span>
+                <span>muhammadkashif@nyu.edu</span>
+              </div>
+
+              <div class="contact-chip">
+                <span>📧</span>
+                <span>muhammadkashif038@gmail.com</span>
+              </div>
+              
+              <div class="contact-chip">
+                <span>💼</span>
+                <a href="https://www.linkedin.com/in/muhammad-kashif-29191571/" target="_blank" rel="noreferrer">LinkedIn</a>
+              </div>
+              <!-- <div class="contact-chip">
+                <span>🐙</span>
+                <span>github.com/your-username</span>
+              </div> -->
+            </div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-title">Looking For</div>
+            <div class="pill-list">
+              <span class="pill-item">QML collaborators</span>
+              <span class="pill-item">Hybrid QNN projects</span>
+              <span class="pill-item">QML use-cases</span>
+              <span class="pill-item">Efficient Quantum architecture search</span>
+              <span class="pill-item">Seminar & talk invitations</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      © <span id="year"></span> Muhammad Kashif ·
+      <a href="https://github.com" target="_blank" rel="noreferrer">Source</a>
+    </footer>
+  </main>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
