@@ -291,14 +291,13 @@
 
     .hero-card {
       position: relative;
-      width: 100%;
-      max-width: 320px;
+      z-index: 1;
       border-radius: 26px;
-      padding: 18px 18px 16px;
-      background: radial-gradient(circle at top left, rgba(79,70,229,0.35), transparent 55%), radial-gradient(circle at bottom right, rgba(34,197,94,0.3), transparent 60%), #020617;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      overflow: hidden;
+      /* glass effect – much more transparent */
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(148,163,184,0.7);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.85);
     }
 
     .hero-card-header {
@@ -726,43 +725,41 @@
       justify-content: center;
     }
     
-    /* Wrap: adds padding so the background art is clearly visible around the card */
+    /* Extra padding so the art clearly frames the card */
     .hero-art-wrap {
       position: relative;
       width: 100%;
       max-width: 380px;
-      padding: 22px;             /* <<< this creates the visible border of art */
+      padding: 30px; /* bigger gap = more image visible */
     }
     
-    /* Background image with glow + gentle float */
+    /* Background image with glow + strong brightness */
     .hero-art-bg {
       position: absolute;
       inset: 0;
-      border-radius: 34px;
+      border-radius: 36px;
       overflow: hidden;
       animation: heroFloat 14s ease-in-out infinite alternate;
-      filter: saturate(1.15) brightness(1.08);
+      filter: brightness(1.4) contrast(1.15) saturate(1.3);
       z-index: 0;
     }
     
-    /* actual image */
     .hero-art-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.05);
+      transform: scale(1.06);
     }
-
     
-    /* Light overlay – circuits still clearly visible */
+    /* Very light overlay – mainly to tint, not to darken */
     .hero-art-bg::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at top left, rgba(79,70,229,0.18), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(34,197,94,0.16), transparent 60%);
-      mix-blend-mode: soft-light;
+        radial-gradient(circle at top left, rgba(79,70,229,0.14), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(34,197,94,0.12), transparent 60%);
+      mix-blend-mode: screen;
       pointer-events: none;
     }
     
@@ -772,31 +769,21 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      border: 1px solid rgba(129,140,248,0.8);
+      border: 1px solid rgba(129,140,248,0.9);
       box-shadow:
-        0 0 22px rgba(129,140,248,0.6),
-        0 0 38px rgba(52,211,153,0.45);
-      opacity: 0.95;
+        0 0 24px rgba(129,140,248,0.75),
+        0 0 42px rgba(52,211,153,0.5);
+      opacity: 1;
       pointer-events: none;
-    }
-    
-    /* Glassy card on top */
-    .hero-card {
-      position: relative;
-      z-index: 1;
-      border-radius: 26px;
-      background: rgba(15,23,42,0.78);   /* more transparent */
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(148,163,184,0.65);
-      box-shadow: 0 18px 40px rgba(15,23,42,0.85);
     }
     
     /* Floating motion */
     @keyframes heroFloat {
       0%   { transform: translate3d(0px, 0px, 0) scale(1.02); }
-      50%  { transform: translate3d(-6px, -8px, 0) scale(1.04); }
-      100% { transform: translate3d(4px, 4px, 0) scale(1.03); }
+      50%  { transform: translate3d(-8px, -10px, 0) scale(1.05); }
+      100% { transform: translate3d(6px, 5px, 0) scale(1.03); }
     }
+
     
 
 
