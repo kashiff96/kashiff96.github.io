@@ -734,53 +734,59 @@
     /* Background image with gradient overlay + floating animation */
     .hero-art-bg {
       position: absolute;
-      inset: -22px;
-      border-radius: 32px;
+      inset: -30px;                /* a bit larger so more art shows */
+      border-radius: 34px;
       overflow: hidden;
       animation: heroFloat 14s ease-in-out infinite alternate;
-      filter: saturate(1.1);
+      filter: saturate(1.15) brightness(1.05);
     }
     
+    /* actual image */
     .hero-art-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.06);
+      transform: scale(1.05);
     }
+
     
-    /* Gradient overlay so text/card stays readable */
+    /* MUCH lighter overlay so circuits are visible */
     .hero-art-bg::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at top left, rgba(79,70,229,0.55), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(34,197,94,0.45), transparent 55%),
-        linear-gradient(to bottom right, rgba(15,23,42,0.85), rgba(15,23,42,0.95));
+        radial-gradient(circle at top left, rgba(79,70,229,0.32), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(34,197,94,0.26), transparent 55%),
+        radial-gradient(circle at center, rgba(15,23,42,0.46), transparent 65%);
       mix-blend-mode: soft-light;
       pointer-events: none;
     }
     
-    /* Neon/glow border around the whole block */
+    /* soft neon border glow */
     .hero-art-bg::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      border: 1px solid rgba(129,140,248,0.85);
+      border: 1px solid rgba(129,140,248,0.7);
       box-shadow:
-        0 0 18px rgba(129,140,248,0.7),
-        0 0 36px rgba(52,211,153,0.45);
-      opacity: 0.85;
+        0 0 22px rgba(129,140,248,0.55),
+        0 0 38px rgba(52,211,153,0.4);
+      opacity: 0.95;
       pointer-events: none;
     }
     
-    /* Make the hero card look slightly glassy on top of the image */
     .hero-card {
       position: relative;
-      background: radial-gradient(circle at top, rgba(15,23,42,0.96), rgba(15,23,42,0.98));
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(148,163,184,0.75);
+      background: radial-gradient(
+        circle at top,
+        rgba(15,23,42,0.78),
+        rgba(15,23,42,0.86)
+      );
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.85);
     }
     
     /* Floating motion for the background */
