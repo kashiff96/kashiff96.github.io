@@ -963,7 +963,34 @@
           const type = summary.type || "other";
           const year = summary["publication-date"]?.year?.value || "";
           const journalTitle = summary["journal-title"]?.value || "";
-          const url = summary.url?.value || "";
+          let url = summary.url?.value || "";
+
+          // DOI link
+          const externalIds = summary["external-ids"]?.["external-id"] || [];
+          
+          const doiEntry = externalIds.find(id =>
+            (id["external-id-type"] || "").toLowerCase() === "doi"
+          );
+          
+          const arxivEntry = externalIds.find(id =>
+            (id["external-id-type"] || "").toLowerCase().includes("arxiv")
+          );
+          
+          if (!url && doiEntry) {
+            url = `https://doi.org/${doiEntry["external-id-value"]}`;
+          }
+          
+          // arXiv fallback
+          if (!url && arxivEntry) {
+            url = `https://arxiv.org/abs/${arxivEntry["external-id-value"]}`;
+          }
+          
+          // Final fallback: Google Scholar search
+          if (!url) {
+            url =
+              "https://scholar.google.com/scholar?q=" +
+              encodeURIComponent(title);
+          }
 
           publications.push({ title, type, year, journalTitle, url });
         });
