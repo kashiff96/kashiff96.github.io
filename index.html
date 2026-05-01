@@ -693,7 +693,6 @@
         <span class="eyebrow">Publications</span>
         <h1>Publications</h1>
         <p class="lead">
-          Selected publications are curated manually. The complete publication list below is designed to be fetched from ORCID and grouped by publication type.
         </p>
       </div>
 
@@ -711,7 +710,7 @@
       <div class="pub-section full-publications">
         <div class="subsection-heading compact-heading">
           <h2>Full Publication List</h2>
-          <p>Automatically fetched from ORCID and grouped by publication type.</p>
+        
         </div>
 
         <div id="orcid-status" class="orcid-status">Add your ORCID iD in the code to load publications automatically.</div>
@@ -903,6 +902,8 @@
     let orcidLoaded = false;
 
     const SELECTED_PUBLICATION_TITLES = [
+      "Closing the Loop: Resource-aware Hybrid NAS Guided by Analytical and Hardware-Calibrated Quantum Cost Modeling",
+      "Late Breaking Results: Hardware-Aware Compilation Reshapes Trainability in Variational Quantum Circuits",
       "Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?",
       "FAQNAS: FLOPs-aware Hybrid Quantum Neural Architecture Search using Genetic Algorithm",
       "Alleviating Barren Plateaus in Parameterized Quantum Machine Learning Circuits",
@@ -971,7 +972,6 @@
         publications.sort((a, b) => String(b.year).localeCompare(String(a.year)));
 
         renderPublications(publications);
-        status.textContent = `Loaded ${publications.length} publications from ORCID.`;
       } catch (error) {
         status.textContent = "Could not load ORCID publications automatically. Please check the ORCID iD or use a cached publications JSON file.";
       }
