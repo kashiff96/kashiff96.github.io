@@ -317,6 +317,40 @@
       color: var(--muted);
     }
 
+    .research-feature {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 48px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.05);
+    }
+
+    .research-feature-text h2 {
+      font-size: 28px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .research-feature-text p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .research-feature-image img {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
     .content-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -647,6 +681,14 @@
 
       .about-layout,
       .about-hero,
+      .contact-box,
+      .research-feature {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .about-layout,
+      .about-hero,
       .contact-box {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -762,16 +804,43 @@
         <p class="lead">Selected research directions and project areas connecting quantum machine learning, hybrid quantum-classical architectures, and practical near-term quantum algorithms.</p>
       </div>
 
-      <div class="content-grid">
-        <article class="card">
-          <h2>Trainability and expressibility in QNNs</h2>
-          <p>Studying how circuit depth, width, and entanglement patterns affect expressibility and optimization landscapes in quantum and hybrid quantum neural networks.</p>
-        </article>
+      <section class="research-feature">
+          <div class="research-feature-text">
+            <h2>Trainability and Expressibility in QNNs</h2>
 
-        <article class="card">
-          <h2>Hybrid quantum-classical architectures</h2>
-          <p>Evaluating how quantum layers interact with classical pre- and post-processing modules, and when hybrid designs can offer practical benefits over classical baselines.</p>
-        </article>
+            <p>
+              Investigating how trainability and expressibility interact in parameterized quantum circuits and hybrid quantum neural networks. This includes studying barren plateaus, gradient propagation, circuit depth/width trade-offs, and how hybrid architectures reshape optimization landscapes beyond standard PQC assumptions.
+            </p>
+
+            <p>
+              Current work focuses on understanding whether the commonly assumed expressibility–trainability trade-off still holds in hybrid quantum-classical models and how this impacts neural architecture search for QML systems.
+            </p>
+          </div>
+
+          <div class="research-feature-image">
+            <img src="1.png" alt="Trainability and expressibility in QNNs" />
+          </div>
+        </section>
+
+        <section class="research-feature">
+          <div class="research-feature-text">
+            <h2>Hybrid Quantum-Classical Architectures</h2>
+
+            <p>
+              Exploring how quantum layers interact with classical pre-processing and post-processing modules in hybrid learning systems. Research investigates when quantum layers provide practical benefits in representation learning, optimization, robustness, and generalization under near-term hardware constraints.
+            </p>
+
+            <p>
+              This includes hybrid quantum neural networks, hardware-aware architectures, noise-resilient QML, and resource-aware quantum neural architecture search methods.
+            </p>
+          </div>
+
+          <div class="research-feature-image">
+            <img src="2.png" alt="Hybrid quantum-classical architectures" />
+          </div>
+        </section>
+
+        <div class="content-grid">
 
         <article class="card">
           <h2>Noise-resilient QML</h2>
