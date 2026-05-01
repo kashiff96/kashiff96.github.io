@@ -277,6 +277,67 @@
       gap: 18px;
     }
 
+    .pub-section {
+      margin-top: 38px;
+    }
+
+    .pub-section:first-of-type {
+      margin-top: 0;
+    }
+
+    .subsection-heading {
+      margin-bottom: 20px;
+      max-width: 760px;
+    }
+
+    .subsection-heading h2 {
+      font-size: 24px;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .subsection-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .full-publications {
+      border-top: 1px solid var(--border);
+      padding-top: 34px;
+    }
+
+    .orcid-status {
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .publication-groups {
+      display: grid;
+      gap: 34px;
+    }
+
+    .publication-group h3 {
+      font-size: 19px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compact-list {
+      gap: 10px;
+    }
+
+    .compact-list:empty::after {
+      content: "No publications found in this category.";
+      color: var(--light-muted);
+      font-size: 14px;
+    }
+
     .list-item {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
@@ -503,66 +564,81 @@
     <section id="publications" class="page" data-title="Publications">
       <div class="page-header">
         <span class="eyebrow">Publications</span>
-        <h1>Selected publications</h1>
-        <p class="lead">A selected list of publications. For the complete and updated list, please see my Google Scholar profile.</p>
+        <h1>Publications</h1>
+        <p class="lead">
+          Selected publications are curated manually. The complete publication list below is designed to be fetched from ORCID and grouped by publication type.
+        </p>
       </div>
 
-      <div class="simple-list">
-        <article class="list-item">
-          <div>
-            <h2>Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?</h2>
-            <p>M. Kashif, et al. · ACM/IEEE Design Automation Conference (DAC), 2025</p>
-          </div>
-          <span class="tag">HQNNs</span>
-        </article>
+      <div class="pub-section">
+        <div class="subsection-heading">
+          <h2>Selected Publi([info.orcid.org](https://info.orcid.org/what-is-orcid/services/public-api/?utm_source=chatgpt.com))ghted papers related to quantum machine learning, hybrid quantum neural networks, trainability, and quantum algorithms.</p>
+        </div>
 
-        <article class="list-item">
-          <div>
-            <h2>FAQNAS: FLOPs-aware Hybrid Quantum Neural Architecture Search using Genetic Algorithm</h2>
-            <p>M. Kashif, et al. · IEEE Design, Automation and Test in Europe (DATE), 2025</p>
-          </div>
-          <span class="tag">NAS</span>
-        </article>
+        <div class="simple-list selected-publications">
+          <article class="list-item">
+            <div>
+              <h2>Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?</h2>
+              <p>M. Kashif, et al. · ACM/IEEE Design Automation Conference (DAC), 2025</p>
+            </div>
+            <span class="tag">HQNNs</span>
+          </article>
 
-        <article class="list-item">
-          <div>
-            <h2>Alleviating Barren Plateaus in Parameterized Quantum Machine Learning Circuits</h2>
-            <p>M. Kashif, et al. · IEEE Design, Automation and Test in Europe (DATE), 2024</p>
-          </div>
-          <span class="tag">Trainability</span>
-        </article>
+          <article class="list-item">
+            <div>
+              <h2>FAQNAS: FLOPs-aware Hybrid Quantum Neural Architecture Search using Genetic Algorithm</h2>
+              <p>M. Kashif, et al. · IEEE Design, Automation and Test in Europe (DATE), 2025</p>
+            </div>
+            <span class="tag">NAS</span>
+          </article>
 
-        <article class="list-item">
-          <div>
-            <h2>ResQNets: A Residual Approach for Mitigating Barren Plateaus in Quantum Neural Networks</h2>
-            <p>M. Kashif, et al. · EPJ Quantum Technology</p>
-          </div>
-          <span class="tag">QNNs</span>
-        </article>
+          <article class="list-item">
+            <div>
+              <h2>Alleviating Barren Plateaus in Parameterized Quantum Machine Learning Circuits</h2>
+              <p>M. Kashif, et al. · IEEE Design, Automation and Test in Europe (DATE), 2024</p>
+            </div>
+            <span class="tag">Trainability</span>
+          </article>
 
-        <article class="list-item">
-          <div>
-            <h2>Deep Quanvolutional Neural Networks with Enhanced Trainability and Gradient Propagation</h2>
-            <p>M. Kashif, et al. · Scientific Reports</p>
-          </div>
-          <span class="tag">Quanvolution</span>
-        </article>
+          <article class="list-item">
+            <div>
+              <h2>ResQNets: A Residual Approach for Mitigating Barren Plateaus in Quantum Neural Networks</h2>
+              <p>M. Kashif, et al. · EPJ Quantum Technology</p>
+            </div>
+            <span class="tag">QNNs</span>
+          </article>
+        </div>
+      </div>
 
-        <article class="list-item">
-          <div>
-            <h2>HQNET: Harnessing Quantum Noise for Effective Training of Quantum Neural Networks in NISQ Era</h2>
-            <p>M. Kashif, et al. · IEEE International Conference on Quantum Artificial Intelligence, 2025</p>
-          </div>
-          <span class="tag">Noise</span>
-        </article>
+      <div class="pub-section full-publications">
+        <div class="subsection-heading">
+          <h2>Full Publication List</h2>
+          <p>Automatically fetched from ORCID and grouped into journals, conferences, preprints, and other publications.</p>
+        </div>
 
-        <article class="list-item">
-          <div>
-            <h2>NRQNN: The Role of Observable Selection in Noise-Resilient Quantum Neural Networks</h2>
-            <p>M. Kashif, et al. · ICEQT, CSCE, 2024</p>
+        <div id="orcid-status" class="orcid-status">Loading publications from ORCID...</div>
+
+        <div class="publication-groups">
+          <div class="publication-group">
+            <h3>Journal Articles</h3>
+            <div id="journal-publications" class="simple-list compact-list"></div>
           </div>
-          <span class="tag">QML</span>
-        </article>
+
+          <div class="publication-group">
+            <h3>Conference Papers</h3>
+            <div id="conference-publications" class="simple-list compact-list"></div>
+          </div>
+
+          <div class="publication-group">
+            <h3>Preprints</h3>
+            <div id="preprint-publications" class="simple-list compact-list"></div>
+          </div>
+
+          <div class="publication-group">
+            <h3>Other Publications</h3>
+            <div id="other-publications" class="simple-list compact-list"></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -683,7 +759,113 @@
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const ORCID_ID = "0000-0003-2023-6371"; // Replace with your ORCID iD
+    let orcidLoaded = false;
+
+    async function loadOrcidPublications() {
+      if (orcidLoaded || ORCID_ID === "0000-0000-0000-0000") {
+        const status = document.getElementById("orcid-status");
+        if (status && ORCID_ID === "0000-0000-0000-0000") {
+          status.textContent = "Add your ORCID iD in the code to automatically load the full publication list.";
+        }
+        return;
+      }
+
+      orcidLoaded = true;
+      const status = document.getElementById("orcid-status");
+
+      try {
+        const worksResponse = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/works`, {
+          headers: { Accept: "application/json" }
+        });
+
+        if (!worksResponse.ok) {
+          throw new Error("Could not fetch ORCID works.");
+        }
+
+        const worksData = await worksResponse.json();
+        const groups = worksData.group || [];
+        const publications = [];
+
+        groups.forEach(group => {
+          const summary = group["work-summary"] && group["work-summary"][0];
+          if (!summary) return;
+
+          const title = summary.title?.title?.value || "Untitled publication";
+          const type = summary.type || "other";
+          const year = summary["publication-date"]?.year?.value || "";
+          const journalTitle = summary["journal-title"]?.value || "";
+          const url = summary.url?.value || "";
+
+          publications.push({ title, type, year, journalTitle, url });
+        });
+
+        publications.sort((a, b) => String(b.year).localeCompare(String(a.year)));
+
+        renderPublications(publications);
+        status.textContent = `Loaded ${publications.length} publications from ORCID.`;
+      } catch (error) {
+        status.textContent = "Could not load ORCID publications automatically. Please check the ORCID iD or use a cached publications JSON file.";
+      }
+    }
+
+    function renderPublications(publications) {
+      const containers = {
+        journal: document.getElementById("journal-publications"),
+        conference: document.getElementById("conference-publications"),
+        preprint: document.getElementById("preprint-publications"),
+        other: document.getElementById("other-publications")
+      };
+
+      Object.values(containers).forEach(container => {
+        if (container) container.innerHTML = "";
+      });
+
+      publications.forEach(pub => {
+        const category = mapOrcidTypeToCategory(pub.type);
+        const container = containers[category] || containers.other;
+        if (!container) return;
+
+        const article = document.createElement("article");
+        article.className = "list-item";
+
+        const titleHtml = pub.url
+          ? `<a href="${escapeHtml(pub.url)}" target="_blank" rel="noreferrer">${escapeHtml(pub.title)}</a>`
+          : escapeHtml(pub.title);
+
+        article.innerHTML = `
+          <div>
+            <h2>${titleHtml}</h2>
+            <p>${escapeHtml([pub.journalTitle, pub.year].filter(Boolean).join(" · "))}</p>
+          </div>
+          <span class="tag">${escapeHtml(pub.type)}</span>
+        `;
+
+        container.appendChild(article);
+      });
+    }
+
+    function mapOrcidTypeToCategory(type) {
+      const normalized = String(type || "").toLowerCase();
+
+      if (normalized.includes("journal")) return "journal";
+      if (normalized.includes("conference") || normalized.includes("proceedings")) return "conference";
+      if (normalized.includes("preprint") || normalized.includes("working-paper")) return "preprint";
+      return "other";
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
     showPage(location.hash.replace("#", "") || "about");
+
   </script>
 </body>
 </html>
