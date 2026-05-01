@@ -28,10 +28,6 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
@@ -56,16 +52,13 @@
     }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(248, 250, 252, 0.92);
+      background: rgba(248, 250, 252, 0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav {
-      min-height: 68px;
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -76,6 +69,11 @@
       display: flex;
       flex-direction: column;
       line-height: 1.25;
+      color: var(--text);
+    }
+
+    .brand:hover {
+      text-decoration: none;
     }
 
     .brand strong {
@@ -90,36 +88,45 @@
 
     .nav-links {
       display: flex;
-      gap: 22px;
+      gap: 20px;
       font-size: 14px;
       font-weight: 500;
     }
 
     .nav-links a {
       color: var(--muted);
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--accent);
+      border-bottom-color: var(--accent);
       text-decoration: none;
     }
 
     main {
-      padding-bottom: 56px;
+      min-height: calc(100vh - 130px);
+      padding: 54px 0 64px;
     }
 
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
-      gap: 56px;
-      padding: 72px 0 54px;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page-header {
+      max-width: 760px;
+      margin-bottom: 34px;
     }
 
     .eyebrow {
       display: inline-flex;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       color: var(--accent);
       background: var(--accent-soft);
       padding: 5px 10px;
@@ -129,8 +136,8 @@
     }
 
     h1 {
-      font-size: clamp(34px, 5vw, 54px);
-      line-height: 1.08;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.1;
       letter-spacing: -0.04em;
       margin-bottom: 18px;
     }
@@ -138,15 +145,21 @@
     .lead {
       font-size: 18px;
       color: var(--muted);
-      max-width: 720px;
-      margin-bottom: 26px;
+      max-width: 780px;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(270px, 0.65fr);
+      gap: 44px;
+      align-items: start;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 26px;
+      margin: 26px 0;
     }
 
     .button {
@@ -190,12 +203,18 @@
       padding: 5px 10px;
     }
 
-    .profile-card {
+    .profile-card,
+    .card,
+    .contact-box,
+    .timeline-item {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 16px;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.05);
+    }
+
+    .profile-card {
       padding: 24px;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
     }
 
     .profile-initials {
@@ -218,10 +237,12 @@
       margin-bottom: 6px;
     }
 
-    .profile-card p {
+    .profile-card p,
+    .card p,
+    .timeline-item p,
+    .contact-box p {
       font-size: 14px;
       color: var(--muted);
-      margin-bottom: 14px;
     }
 
     .profile-list {
@@ -235,31 +256,6 @@
       color: var(--muted);
     }
 
-    section {
-      padding: 48px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section-heading {
-      display: grid;
-      grid-template-columns: minmax(160px, 0.28fr) minmax(0, 0.72fr);
-      gap: 40px;
-      align-items: start;
-      margin-bottom: 26px;
-    }
-
-    .section-heading h2 {
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      color: var(--accent);
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      max-width: 760px;
-    }
-
     .content-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -267,20 +263,13 @@
     }
 
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
+      padding: 22px;
     }
 
+    .card h2,
     .card h3 {
-      font-size: 17px;
+      font-size: 18px;
       margin-bottom: 8px;
-    }
-
-    .card p {
-      font-size: 14px;
-      color: var(--muted);
     }
 
     .simple-list {
@@ -292,8 +281,12 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 20px;
-      padding-bottom: 18px;
+      padding: 20px 0;
       border-bottom: 1px solid var(--border);
+    }
+
+    .list-item:first-child {
+      padding-top: 0;
     }
 
     .list-item:last-child {
@@ -301,8 +294,9 @@
       padding-bottom: 0;
     }
 
+    .list-item h2,
     .list-item h3 {
-      font-size: 16px;
+      font-size: 17px;
       margin-bottom: 4px;
     }
 
@@ -328,14 +322,12 @@
     }
 
     .timeline-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 20px;
+      padding: 20px 22px;
     }
 
+    .timeline-item h2,
     .timeline-item h3 {
-      font-size: 16px;
+      font-size: 17px;
       margin-bottom: 3px;
     }
 
@@ -345,25 +337,12 @@
       margin-bottom: 8px;
     }
 
-    .timeline-item p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
     .contact-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
       padding: 24px;
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(240px, 0.6fr);
       gap: 28px;
       align-items: start;
-    }
-
-    .contact-box p {
-      color: var(--muted);
-      margin-bottom: 14px;
     }
 
     .contact-links {
@@ -373,30 +352,39 @@
     }
 
     footer {
-      padding: 26px 0;
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
       color: var(--light-muted);
       font-size: 13px;
       text-align: center;
     }
 
     @media (max-width: 820px) {
-      .hero,
-      .section-heading,
+      main {
+        padding-top: 38px;
+      }
+
+      .about-layout,
       .contact-box {
         grid-template-columns: 1fr;
         gap: 24px;
-      }
-
-      .hero {
-        padding-top: 48px;
       }
 
       .content-grid {
         grid-template-columns: 1fr;
       }
 
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
       .nav-links {
-        display: none;
+        width: 100%;
+        gap: 14px;
+        overflow-x: auto;
+        padding-bottom: 4px;
       }
 
       .list-item {
@@ -410,120 +398,119 @@
 <body>
   <header>
     <div class="container nav">
-      <a class="brand" href="#top" aria-label="Muhammad Kashif homepage">
+      <a class="brand nav-link" href="#about" data-page="about" aria-label="Muhammad Kashif homepage">
         <strong>Muhammad Kashif</strong>
         <span>Quantum Machine Learning · Quantum Algorithms</span>
       </a>
 
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a class="nav-link active" href="#about" data-page="about">About</a>
+        <a class="nav-link" href="#research" data-page="research">Research</a>
+        <a class="nav-link" href="#publications" data-page="publications">Publications</a>
+        <a class="nav-link" href="#projects" data-page="projects">Projects</a>
+        <a class="nav-link" href="#talks" data-page="talks">Talks</a>
+        <a class="nav-link" href="#contact" data-page="contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main id="top" class="container">
-    <section class="hero">
-      <div>
-        <span class="eyebrow">Postdoctoral Research Associate · NYU Abu Dhabi</span>
-        <h1>Quantum machine learning, hybrid quantum neural networks, and quantum algorithms.</h1>
-        <p class="lead">
-          I am a Postdoctoral Research Associate at the Center for Quantum and Topological Systems (CQTS), NYU Abu Dhabi, and Research Team Lead at eBRAIN Lab. My research explores how quantum computing and machine learning can complement each other in realistic, hardware-aware settings.
-        </p>
-
-        <div class="actions">
-          <a class="button primary" href="cv.pdf" target="_blank" rel="noreferrer">View CV</a>
-          <a class="button" href="https://scholar.google.com/citations?user=OqsN2QYAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
-          <a class="button" href="https://www.linkedin.com/in/muhammad-kashif-29191571/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="button" href="https://www.scopus.com/authid/detail.uri?authorId=57197631441&origin=resultslist" target="_blank" rel="noreferrer">Scopus</a>
-        </div>
-
-        <div class="keywords" aria-label="Research keywords">
-          <span class="keyword">Quantum Machine Learning</span>
-          <span class="keyword">Hybrid Quantum Neural Networks</span>
-          <span class="keyword">Trainability</span>
-          <span class="keyword">Barren Plateaus</span>
-          <span class="keyword">Noise-resilient QNNs</span>
-          <span class="keyword">Quantum Architecture Search</span>
-        </div>
-      </div>
-
-      <aside class="profile-card" aria-label="Profile summary">
-        <div class="profile-initials">MK</div>
-        <h2>Dr. Muhammad Kashif</h2>
-        <p>Researcher in quantum machine learning, hybrid quantum-classical architectures, and quantum algorithms for near-term quantum systems.</p>
-        <ul class="profile-list">
-          <li><strong>Current role:</strong> Postdoctoral Research Associate, CQTS, NYU Abu Dhabi</li>
-          <li><strong>Leadership:</strong> Research Team Lead, eBRAIN Lab</li>
-          <li><strong>PhD:</strong> Computer Science and Engineering, Hamad Bin Khalifa University</li>
-        </ul>
-      </aside>
-    </section>
-
-    <section id="about">
-      <div class="section-heading">
-        <h2>About</h2>
+  <main class="container">
+    <!-- ABOUT / HOME PAGE -->
+    <section id="about" class="page active" data-title="About">
+      <div class="about-layout">
         <div>
-          <p>
-            My work focuses on quantum machine learning, especially the design and analysis of trainable, noise-aware, and hardware-conscious quantum neural networks. I am interested in understanding when quantum models provide meaningful benefits, how hybrid quantum-classical systems should be designed, and how near-term hardware constraints affect practical QML performance.
-          </p>
-        </div>
-      </div>
+          <div class="page-header">
+            <span class="eyebrow">Postdoctoral Research Associate · NYU Abu Dhabi</span>
+            <h1>Quantum machine learning, hybrid quantum neural networks, and quantum algorithms.</h1>
+            <p class="lead">
+              I am a Postdoctoral Research Associate at the Center for Quantum and Topological Systems (CQTS), NYU Abu Dhabi, and Research Team Lead at eBRAIN Lab. My research explores how quantum computing and machine learning can complement each other in realistic, hardware-aware settings.
+            </p>
+          </div>
 
-      <div class="content-grid">
-        <div class="card">
-          <h3>Research focus</h3>
-          <p>Trainability and expressibility of quantum neural networks, barren plateau mitigation, noise-resilient QNN design, and hybrid quantum-classical learning systems.</p>
+          <div class="actions">
+            <a class="button primary" href="cv.pdf" target="_blank" rel="noreferrer">View CV</a>
+            <a class="button" href="https://scholar.google.com/citations?user=OqsN2QYAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
+            <a class="button" href="https://www.linkedin.com/in/muhammad-kashif-29191571/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="button" href="https://www.scopus.com/authid/detail.uri?authorId=57197631441&origin=resultslist" target="_blank" rel="noreferrer">Scopus</a>
+          </div>
+
+          <div class="keywords" aria-label="Research keywords">
+            <span class="keyword">Quantum Machine Learning</span>
+            <span class="keyword">Hybrid Quantum Neural Networks</span>
+            <span class="keyword">Trainability</span>
+            <span class="keyword">Barren Plateaus</span>
+            <span class="keyword">Noise-resilient QNNs</span>
+            <span class="keyword">Quantum Architecture Search</span>
+          </div>
+
+          <div class="content-grid" style="margin-top: 34px;">
+            <div class="card">
+              <h2>Research focus</h2>
+              <p>Trainability and expressibility of quantum neural networks, barren plateau mitigation, noise-resilient QNN design, and hybrid quantum-classical learning systems.</p>
+            </div>
+            <div class="card">
+              <h2>Broader interests</h2>
+              <p>Hardware-aware quantum algorithms, quantum architecture search, analytical quantum cost modeling, and QML applications in finance, healthcare, classification, and path planning.</p>
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <h3>Broader interests</h3>
-          <p>Hardware-aware quantum algorithms, quantum architecture search, analytical quantum cost modeling, and QML applications in finance, healthcare, classification, and path planning.</p>
-        </div>
+
+        <aside class="profile-card" aria-label="Profile summary">
+          <div class="profile-initials">MK</div>
+          <h2>Dr. Muhammad Kashif</h2>
+          <p>Researcher in quantum machine learning, hybrid quantum-classical architectures, and quantum algorithms for near-term quantum systems.</p>
+          <ul class="profile-list">
+            <li><strong>Current role:</strong> Postdoctoral Research Associate, CQTS, NYU Abu Dhabi</li>
+            <li><strong>Leadership:</strong> Research Team Lead, eBRAIN Lab</li>
+            <li><strong>PhD:</strong> Computer Science and Engineering, Hamad Bin Khalifa University</li>
+          </ul>
+        </aside>
       </div>
     </section>
 
-    <section id="research">
-      <div class="section-heading">
-        <h2>Research</h2>
-        <p>Selected research directions that connect quantum algorithm design, machine learning, and practical constraints of near-term quantum computing.</p>
+    <!-- RESEARCH PAGE -->
+    <section id="research" class="page" data-title="Research">
+      <div class="page-header">
+        <span class="eyebrow">Research</span>
+        <h1>Research directions</h1>
+        <p class="lead">Selected research directions connecting quantum algorithm design, machine learning, and practical constraints of near-term quantum computing.</p>
       </div>
 
       <div class="content-grid">
         <article class="card">
-          <h3>Trainability and expressibility in QNNs</h3>
+          <h2>Trainability and expressibility in QNNs</h2>
           <p>Studying how circuit depth, width, and entanglement patterns affect expressibility and optimization landscapes in quantum and hybrid quantum neural networks.</p>
         </article>
 
         <article class="card">
-          <h3>Hybrid quantum-classical architectures</h3>
+          <h2>Hybrid quantum-classical architectures</h2>
           <p>Evaluating how quantum layers interact with classical pre- and post-processing modules, and when hybrid designs can offer practical benefits over classical baselines.</p>
         </article>
 
         <article class="card">
-          <h3>Noise-resilient QML</h3>
+          <h2>Noise-resilient QML</h2>
           <p>Designing models and training strategies that remain effective under NISQ-era noise, including approaches where noise can be incorporated into the learning process.</p>
         </article>
 
         <article class="card">
-          <h3>Quantum optimization and applications</h3>
+          <h2>Quantum optimization and applications</h2>
           <p>Exploring QML and quantum optimization for application domains such as finance, healthcare, transportation, and decision-making problems.</p>
         </article>
       </div>
     </section>
 
-    <section id="publications">
-      <div class="section-heading">
-        <h2>Publications</h2>
-        <p>A selected list of publications. For the complete and updated list, please see my Google Scholar profile.</p>
+    <!-- PUBLICATIONS PAGE -->
+    <section id="publications" class="page" data-title="Publications">
+      <div class="page-header">
+        <span class="eyebrow">Publications</span>
+        <h1>Selected publications</h1>
+        <p class="lead">A selected list of publications. For the complete and updated list, please see my Google Scholar profile.</p>
       </div>
 
       <div class="simple-list">
         <article class="list-item">
           <div>
-            <h3>Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?</h3>
+            <h2>Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?</h2>
             <p>M. Kashif, et al. · ACM/IEEE Design Automation Conference (DAC), 2025</p>
           </div>
           <span class="tag">HQNNs</span>
@@ -531,7 +518,7 @@
 
         <article class="list-item">
           <div>
-            <h3>FAQNAS: FLOPs-aware Hybrid Quantum Neural Architecture Search using Genetic Algorithm</h3>
+            <h2>FAQNAS: FLOPs-aware Hybrid Quantum Neural Architecture Search using Genetic Algorithm</h2>
             <p>M. Kashif, et al. · IEEE Design, Automation and Test in Europe (DATE), 2025</p>
           </div>
           <span class="tag">NAS</span>
@@ -539,7 +526,7 @@
 
         <article class="list-item">
           <div>
-            <h3>Alleviating Barren Plateaus in Parameterized Quantum Machine Learning Circuits</h3>
+            <h2>Alleviating Barren Plateaus in Parameterized Quantum Machine Learning Circuits</h2>
             <p>M. Kashif, et al. · IEEE Design, Automation and Test in Europe (DATE), 2024</p>
           </div>
           <span class="tag">Trainability</span>
@@ -547,7 +534,7 @@
 
         <article class="list-item">
           <div>
-            <h3>ResQNets: A Residual Approach for Mitigating Barren Plateaus in Quantum Neural Networks</h3>
+            <h2>ResQNets: A Residual Approach for Mitigating Barren Plateaus in Quantum Neural Networks</h2>
             <p>M. Kashif, et al. · EPJ Quantum Technology</p>
           </div>
           <span class="tag">QNNs</span>
@@ -555,7 +542,7 @@
 
         <article class="list-item">
           <div>
-            <h3>Deep Quanvolutional Neural Networks with Enhanced Trainability and Gradient Propagation</h3>
+            <h2>Deep Quanvolutional Neural Networks with Enhanced Trainability and Gradient Propagation</h2>
             <p>M. Kashif, et al. · Scientific Reports</p>
           </div>
           <span class="tag">Quanvolution</span>
@@ -563,64 +550,83 @@
 
         <article class="list-item">
           <div>
-            <h3>NRQNN: The Role of Observable Selection in Noise-Resilient Quantum Neural Networks</h3>
-            <p>M. Kashif, et al. · ICEQT, CSCE, 2024</p>
+            <h2>HQNET: Harnessing Quantum Noise for Effective Training of Quantum Neural Networks in NISQ Era</h2>
+            <p>M. Kashif, et al. · IEEE International Conference on Quantum Artificial Intelligence, 2025</p>
           </div>
           <span class="tag">Noise</span>
+        </article>
+
+        <article class="list-item">
+          <div>
+            <h2>NRQNN: The Role of Observable Selection in Noise-Resilient Quantum Neural Networks</h2>
+            <p>M. Kashif, et al. · ICEQT, CSCE, 2024</p>
+          </div>
+          <span class="tag">QML</span>
         </article>
       </div>
     </section>
 
-    <section id="projects">
-      <div class="section-heading">
-        <h2>Projects</h2>
-        <p>Representative research code and experimental directions. Replace placeholder links with repository or project pages when available.</p>
+    <!-- PROJECTS PAGE -->
+    <section id="projects" class="page" data-title="Projects">
+      <div class="page-header">
+        <span class="eyebrow">Projects</span>
+        <h1>Projects and research code</h1>
+        <p class="lead">Representative research code and experimental directions. Repository links can be added when available.</p>
       </div>
 
       <div class="content-grid">
         <article class="card">
-          <h3>Hybrid NAS for QML</h3>
+          <h2>Hybrid NAS for QML</h2>
           <p>Multi-objective search over hybrid quantum-classical architectures using PennyLane, Qiskit, PyTorch, and NSGA-II.</p>
         </article>
 
         <article class="card">
-          <h3>Expressibility and Trainability Toolkit</h3>
+          <h2>Expressibility and Trainability Toolkit</h2>
           <p>Tools for evaluating fidelity distributions, expressibility, gradient variance, and hardware-aware circuit transformations.</p>
+        </article>
+
+        <article class="card">
+          <h2>Quantum for Finance</h2>
+          <p>Small-scale QML and quantum optimization pipelines for portfolio optimization, risk modeling, and finance-oriented decision problems.</p>
         </article>
       </div>
     </section>
 
-    <section id="talks">
-      <div class="section-heading">
-        <h2>Talks</h2>
-        <p>Selected conference presentations and research talks.</p>
+    <!-- TALKS PAGE -->
+    <section id="talks" class="page" data-title="Talks">
+      <div class="page-header">
+        <span class="eyebrow">Talks</span>
+        <h1>Talks and presentations</h1>
+        <p class="lead">Selected conference presentations and research talks.</p>
       </div>
 
       <div class="timeline">
         <article class="timeline-item">
-          <h3>ACM/IEEE Design Automation Conference (DAC)</h3>
+          <h2>ACM/IEEE Design Automation Conference (DAC)</h2>
           <div class="meta">June 2025 · San Francisco, USA</div>
           <p>Presented work on computational advantage in hybrid quantum neural networks.</p>
         </article>
 
         <article class="timeline-item">
-          <h3>IEEE Quantum Week / QCE</h3>
+          <h2>IEEE Quantum Week / QCE</h2>
           <div class="meta">September 2025 · New Mexico, USA</div>
           <p>Presented research on quantum algorithms for portfolio optimization.</p>
         </article>
 
         <article class="timeline-item">
-          <h3>IEEE International Conference on Rebooting Computing (ICRC)</h3>
+          <h2>IEEE International Conference on Rebooting Computing (ICRC)</h2>
           <div class="meta">December 2024 · San Diego, USA</div>
           <p>Presented work on parameter initialization and barren plateaus in QNNs.</p>
         </article>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="section-heading">
-        <h2>Contact</h2>
-        <p>For research collaborations, student projects, invited talks, reviewing opportunities, or discussions related to QML and quantum algorithms, please reach out by email.</p>
+    <!-- CONTACT PAGE -->
+    <section id="contact" class="page" data-title="Contact">
+      <div class="page-header">
+        <span class="eyebrow">Contact</span>
+        <h1>Contact</h1>
+        <p class="lead">For research collaborations, student projects, invited talks, reviewing opportunities, or discussions related to QML and quantum algorithms, please reach out by email.</p>
       </div>
 
       <div class="contact-box">
@@ -644,7 +650,40 @@
   </footer>
 
   <script>
+    const pages = document.querySelectorAll(".page");
+    const navLinks = document.querySelectorAll(".nav-link[data-page]");
+
+    function showPage(pageId) {
+      const target = document.getElementById(pageId) || document.getElementById("about");
+
+      pages.forEach(page => {
+        page.classList.toggle("active", page === target);
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.dataset.page === target.id);
+      });
+
+      const pageTitle = target.dataset.title || "About";
+      document.title = `${pageTitle} | Dr. Muhammad Kashif`;
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        const pageId = link.dataset.page;
+        history.pushState({ pageId }, "", `#${pageId}`);
+        showPage(pageId);
+      });
+    });
+
+    window.addEventListener("popstate", () => {
+      showPage(location.hash.replace("#", "") || "about");
+    });
+
     document.getElementById("year").textContent = new Date().getFullYear();
+    showPage(location.hash.replace("#", "") || "about");
   </script>
 </body>
 </html>
