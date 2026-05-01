@@ -904,7 +904,10 @@
         renderPublications(publications);
         status.textContent = `Loaded ${publications.length} publications from ORCID.`;
       } catch (error) {
-        status.textContent = "Could not load ORCID publications automatically. Please check the ORCID iD or use a cached publications JSON file.";
+      console.error("ORCID loading error:", error);
+      if (status) {
+        status.textContent =
+          "Could not load ORCID publications. Direct browser fetching from ORCID may be blocked. Use a cached publications.json file instead.";
       }
     }
 
@@ -1029,7 +1032,7 @@
     }
 
     showPage(location.hash.replace("#", "") || "about");
-    loadOrcidPublications();
+    // loadOrcidPublications();
   </script>
 </body>
 </html>
