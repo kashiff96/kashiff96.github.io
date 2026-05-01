@@ -744,8 +744,7 @@
           <label for="publication-filter" class="publication-filter-label">
             See all my papers by category (journal, conference, preprint, etc.)
           </label>
-          <select id="publication-filter" class="publication-filter">
-            <option value="" selected>Select publication category</option>
+          
             <option value="all">All Publications</option>
             <option value="journal">Journal Articles</option>
             <option value="conference">Conference Papers</option>
@@ -907,30 +906,17 @@
 
     function filterPublicationGroups(category) {
       document.querySelectorAll(".publication-group").forEach(group => {
-        // Default state: show no publication category until the user selects one.
-        if (category === "") {
+        if (!category) {
           group.classList.add("hidden");
           return;
         }
 
-        // Show all publication categories.
         if (category === "all") {
           group.classList.remove("hidden");
           return;
         }
 
-        // Show only the selected category, including preprints and other publications.
-        group.classList.toggle("hidden", group.dataset.category !== category);
-      });
-    }
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const ORCID_ID = "0000-0003-2023-6371"; // Replace with your ORCID iD
-    let orcidLoaded = false;
-
-    async function loadOrcidPublications() {
-      if (orcidLoaded || ORCID_ID === "0000-0000-0000-0000") {
+        group.classList.toggle("hidden", group.datase_ID === "0000-0000-0000-0000") {
         const status = document.getElementById("orcid-status");
         if (status && ORCID_ID === "0000-0000-0000-0000") {
           status.textContent = "Add your ORCID iD in the code to automatically load the full publication list.";
@@ -1023,15 +1009,13 @@
       });
 
       updatePublicationCounts(counts);
-      filterPublicationGroups(document.getElementById("publication-filter")?.value || "all");
+      filterPublicationGroups(document.getElementById("publication-filter")?.value || "");
     }
 
     function removeDuplicatePublications(publications) {
       const seen = new Set();
 
-      return publications.filter(pub => {
-        const key = normalizeTitle(pub.title);
-        if (!key || seen.has(key)) return false;
+      return publications.filter(pub => {filterPublicationGroups(document.getElementById("publication-filter")?.value || "");rn false;
         seen.add(key);
         return true;
       });
@@ -1134,7 +1118,9 @@
     }
 
     showPage(location.hash.replace("#", "") || "about");
-    loadOrcidPublications();
+    filterPublicationGroups("");
   </script>
 </body>
 </html>
+showPage(location.hash.replace("#", "") || "about");
+    filterPublicationGroups("");
