@@ -322,29 +322,23 @@
 
     .publication-filter-wrap {
       display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 14px;
-      margin: 22px 0 32px;
-      width: 100%;
-    }
-    
-    .publication-filter-label {
-      font-size: 15px;
-      font-weight: 600;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 26px;
       color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
     }
-    
+
     .publication-filter {
-      width: 100%;
+      min-width: 220px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      border-radius: 14px;
-      padding: 14px 18px;
+      border-radius: 10px;
+      padding: 8px 11px;
       font: inherit;
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 14px;
       cursor: pointer;
     }
 
@@ -438,6 +432,12 @@
     .compact-list:empty::after {
       content: "";
       display: none;
+    }
+
+    .empty-note {
+      color: var(--muted);
+      font-size: 14px;
+      padding: 12px 0;
     }
 
     .list-item {
@@ -693,6 +693,7 @@
         <span class="eyebrow">Publications</span>
         <h1>Publications</h1>
         <p class="lead">
+          Selected publications are curated manually. The complete publication list below is designed to be fetched from ORCID and grouped by publication type.
         </p>
       </div>
 
@@ -702,47 +703,18 @@
           <p>Highlighted papers related to quantum machine learning, hybrid quantum neural networks, trainability, and quantum algorithms.</p>
         </div>
 
-        <div class="simple-list selected-publications">
-          <article class="list-item">
-            <div>
-              <h2>Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?</h2>
-              <p>M. Kashif, et al. · ACM/IEEE Design Automation Conference (DAC), 2025</p>
-            </div>
-            <span class="tag tag-selected">HQNNs</span>
-          </article>
-
-          <article class="list-item">
-            <div>
-              <h2>FAQNAS: FLOPs-aware Hybrid Quantum Neural Architecture Search using Genetic Algorithm</h2>
-              <p>M. Kashif, et al. · IEEE Design, Automation and Test in Europe (DATE), 2025</p>
-            </div>
-            <span class="tag tag-selected">NAS</span>
-          </article>
-
-          <article class="list-item">
-            <div>
-              <h2>Alleviating Barren Plateaus in Parameterized Quantum Machine Learning Circuits</h2>
-              <p>M. Kashif, et al. · IEEE Design, Automation and Test in Europe (DATE), 2024</p>
-            </div>
-            <span class="tag tag-selected">Trainability</span>
-          </article>
-
-          <article class="list-item">
-            <div>
-              <h2>ResQNets: A Residual Approach for Mitigating Barren Plateaus in Quantum Neural Networks</h2>
-              <p>M. Kashif, et al. · EPJ Quantum Technology</p>
-            </div>
-            <span class="tag tag-selected">QNNs</span>
-          </article>
+        <div class="simple-list selected-publications" id="selected-publications">
+          <p class="empty-note">Selected publications will appear after ORCID publications are loaded.</p>
         </div>
       </div>
 
       <div class="pub-section full-publications">
         <div class="subsection-heading compact-heading">
           <h2>Full Publication List</h2>
+          <p>Automatically fetched from ORCID and grouped by publication type.</p>
         </div>
 
-        <!-- <div id="orcid-status" class="orcid-status">.</div> -->
+        <div id="orcid-status" class="orcid-status">Add your ORCID iD in the code to load publications automatically.</div>
 
         <div class="publication-filter-wrap">
           <label for="publication-filter" class="publication-filter-label">
@@ -930,6 +902,13 @@
     const ORCID_ID = "0000-0003-2023-6371"; // Replace with your ORCID iD
     let orcidLoaded = false;
 
+    const SELECTED_PUBLICATION_TITLES = [
+      "Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?",
+      "FAQNAS: FLOPs-aware Hybrid Quantum Neural Architecture Search using Genetic Algorithm",
+      "Alleviating Barren Plateaus in Parameterized Quantum Machine Learning Circuits",
+      "ResQNets: A Residual Approach for Mitigating Barren Plateaus in Quantum Neural Networks"
+    ];
+
     async function loadOrcidPublications() {
       if (orcidLoaded || ORCID_ID === "0000-0000-0000-0000") {
         const status = document.getElementById("orcid-status");
@@ -964,32 +943,26 @@
           const year = summary["publication-date"]?.year?.value || "";
           const journalTitle = summary["journal-title"]?.value || "";
           let url = summary.url?.value || "";
-
-          // DOI link
           const externalIds = summary["external-ids"]?.["external-id"] || [];
-          
+
           const doiEntry = externalIds.find(id =>
-            (id["external-id-type"] || "").toLowerCase() === "doi"
+            String(id["external-id-type"] || "").toLowerCase() === "doi"
           );
-          
+
           const arxivEntry = externalIds.find(id =>
-            (id["external-id-type"] || "").toLowerCase().includes("arxiv")
+            String(id["external-id-type"] || "").toLowerCase().includes("arxiv")
           );
-          
+
           if (!url && doiEntry) {
             url = `https://doi.org/${doiEntry["external-id-value"]}`;
           }
-          
-          // arXiv fallback
+
           if (!url && arxivEntry) {
             url = `https://arxiv.org/abs/${arxivEntry["external-id-value"]}`;
           }
-          
-          // Final fallback: Google Scholar search
+
           if (!url) {
-            url =
-              "https://scholar.google.com/scholar?q=" +
-              encodeURIComponent(title);
+            url = "https://scholar.google.com/scholar?q=" + encodeURIComponent(title);
           }
 
           publications.push({ title, type, year, journalTitle, url });
@@ -998,6 +971,7 @@
         publications.sort((a, b) => String(b.year).localeCompare(String(a.year)));
 
         renderPublications(publications);
+        status.textContent = `Loaded ${publications.length} publications from ORCID.`;
       } catch (error) {
         status.textContent = "Could not load ORCID publications automatically. Please check the ORCID iD or use a cached publications JSON file.";
       }
@@ -1023,6 +997,7 @@
       });
 
       const uniquePublications = removeDuplicatePublications(publications);
+      renderSelectedPublications(uniquePublications);
 
       uniquePublications.forEach(pub => {
         const category = mapPublicationToCategory(pub);
@@ -1051,6 +1026,46 @@
 
       updatePublicationCounts(counts);
       filterPublicationGroups(document.getElementById("publication-filter")?.value || "");
+    }
+
+    function renderSelectedPublications(publications) {
+      const container = document.getElementById("selected-publications");
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      const selectedPublications = SELECTED_PUBLICATION_TITLES
+        .map(selectedTitle => {
+          const selectedKey = normalizeTitle(selectedTitle);
+          return publications.find(pub => normalizeTitle(pub.title) === selectedKey);
+        })
+        .filter(Boolean);
+
+      selectedPublications.forEach(pub => {
+        const category = mapPublicationToCategory(pub);
+        const article = document.createElement("article");
+        article.className = "list-item";
+
+        const titleHtml = pub.url
+          ? `<a href="${escapeHtml(pub.url)}" target="_blank" rel="noreferrer">${escapeHtml(pub.title)}</a>`
+          : `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}" target="_blank" rel="noreferrer">${escapeHtml(pub.title)}</a>`;
+
+        article.innerHTML = `
+          <div>
+            <h2>${titleHtml}</h2>
+            <p>${escapeHtml([pub.journalTitle, pub.year].filter(Boolean).join(" · "))}</p>
+          </div>
+          <span class="tag tag-selected">${getCategoryLabel(category)}</span>
+        `;
+
+        container.appendChild(article);
+      });
+
+      if (!selectedPublications.length) {
+        container.innerHTML = `<p class="empty-note">No selected publications matched the ORCID list. Check the titles in SELECTED_PUBLICATION_TITLES.</p>`;
+      }
+
+      setCountText("selected-count", selectedPublications.length);
     }
 
     function removeDuplicatePublications(publications) {
@@ -1087,7 +1102,9 @@
     function updatePublicationCounts(counts) {
       const selectedTotal = document.querySelectorAll(".selected-publications .list-item").length;
 
-      setCountText("selected-count", selectedTotal);
+      if (!document.getElementById("selected-count")?.textContent) {
+        setCountText("selected-count", selectedTotal);
+      }
       setCountText("journal-count", counts.journal);
       setCountText("conference-count", counts.conference);
       setCountText("preprint-count", counts.preprint);
