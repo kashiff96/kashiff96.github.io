@@ -636,7 +636,6 @@
         <span class="eyebrow">Publications</span>
         <h1>Publications</h1>
         <p class="lead">
-          Selected publications are curated manually. The complete publication list below is designed to be fetched from ORCID and grouped by publication type.
         </p>
       </div>
 
@@ -684,7 +683,7 @@
       <div class="pub-section full-publications">
         <div class="subsection-heading compact-heading">
           <h2>Full Publication List</h2>
-          <p>Automatically fetched from ORCID and grouped by publication type.</p>
+          <!-- <p>Automatically fetched from ORCID and grouped by publication type.</p> -->
         </div>
 
         <div id="orcid-status" class="orcid-status">Add your ORCID iD in the code to load publications automatically.</div>
@@ -835,14 +834,14 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const ORCID_ID = "0000-0000-0000-0000"; // Replace with your ORCID iD
+    const ORCID_ID = "0000-0003-2023-6371"; // Replace with your ORCID iD
     let orcidLoaded = false;
 
     async function loadOrcidPublications() {
       if (orcidLoaded || ORCID_ID === "0000-0000-0000-0000") {
         const status = document.getElementById("orcid-status");
         if (status && ORCID_ID === "0000-0000-0000-0000") {
-          status.textContent = "Add your ORCID iD in the code to automatically load the full publication list.";
+          // status.textContent = "Add your ORCID iD in the code to automatically load the full publication list.";
         }
         return;
       }
