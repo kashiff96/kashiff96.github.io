@@ -321,29 +321,24 @@
     }
 
     .publication-filter-wrap {
-      width: 100%;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 10px;
-      margin: 24px 0 32px;
+      margin: 18px 0 26px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
     }
-    
-    .publication-filter-label {
-      color: var(--text);
-      font-size: 15px;
-      font-weight: 700;
-    }
-    
+
     .publication-filter {
-      width: 100%;
+      min-width: 220px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      border-radius: 14px;
-      padding: 14px 16px;
+      border-radius: 10px;
+      padding: 8px 11px;
       font: inherit;
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 14px;
       cursor: pointer;
     }
 
@@ -746,9 +741,12 @@
         <div id="orcid-status" class="orcid-status">Add your ORCID iD in the code to load publications automatically.</div>
 
         <div class="publication-filter-wrap">
-          <label for="publication-filter">See all my papers (Please select type):</label>
+          <label for="publication-filter" class="publication-filter-label">
+            See all my papers by category (journal, conference, preprint, etc.)
+          </label>
           <select id="publication-filter" class="publication-filter">
-            <option value="all">All publications</option>
+            <option value="" selected>Select publication category</option>
+            <option value="all">All Publications</option>
             <option value="journal">Journal Articles</option>
             <option value="conference">Conference Papers</option>
             <option value="preprint">Preprints</option>
@@ -757,22 +755,22 @@
         </div>
 
         <div class="publication-groups">
-          <div class="publication-group" data-category="journal">
+          <div class="publication-group hidden" data-category="journal">
             <h3 class="category-title journal-title">Journal Articles <span id="journal-count" class="count-badge"></span></h3>
             <div id="journal-publications" class="simple-list compact-list"></div>
           </div>
 
-          <div class="publication-group" data-category="conference">
+          <div class="publication-group hidden" data-category="conference">
             <h3 class="category-title conference-title">Conference Papers <span id="conference-count" class="count-badge"></span></h3>
             <div id="conference-publications" class="simple-list compact-list"></div>
           </div>
 
-          <div class="publication-group" data-category="preprint">
+          <div class="publication-group hidden" data-category="preprint">
             <h3 class="category-title preprint-title">Preprints <span id="preprint-count" class="count-badge"></span></h3>
             <div id="preprint-publications" class="simple-list compact-list"></div>
           </div>
 
-          <div class="publication-group" data-category="other">
+          <div class="publication-group hidden" data-category="other">
             <h3 class="category-title other-title">Other Publications <span id="other-count" class="count-badge"></span></h3>
             <div id="other-publications" class="simple-list compact-list"></div>
           </div>
@@ -909,17 +907,20 @@
 
     function filterPublicationGroups(category) {
       document.querySelectorAll(".publication-group").forEach(group => {
-    
-        if (!category) {
+        // Default state: show no publication category until the user selects one.
+        if (category === "") {
           group.classList.add("hidden");
           return;
         }
-    
-        const shouldShow =
-          category === "all" ||
-          group.dataset.category === category;
-    
-        group.classList.toggle("hidden", !shouldShow);
+
+        // Show all publication categories.
+        if (category === "all") {
+          group.classList.remove("hidden");
+          return;
+        }
+
+        // Show only the selected category, including preprints and other publications.
+        group.classList.toggle("hidden", group.dataset.category !== category);
       });
     }
 
@@ -1022,7 +1023,7 @@
       });
 
       updatePublicationCounts(counts);
-      filterPublicationGroups(document.getElementById("publication-filter")?.value || "");
+      filterPublicationGroups(document.getElementById("publication-filter")?.value || "all");
     }
 
     function removeDuplicatePublications(publications) {
