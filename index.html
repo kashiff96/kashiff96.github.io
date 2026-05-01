@@ -981,8 +981,7 @@
       const venue = String(pub.journalTitle || "").toLowerCase();
       const url = String(pub.url || "").toLowerCase();
       const combined = `${type} ${title} ${venue} ${url}`;
-
-      // Check preprints first because ORCID sometimes labels arXiv records as journal-article.
+    
       if (
         combined.includes("arxiv") ||
         combined.includes("preprint") ||
@@ -993,36 +992,40 @@
       ) {
         return "preprint";
       }
-
+    
       if (
-        combined.includes("conference") ||
-        combined.includes("proceedings") ||
-        combined.includes("symposium") ||
-        combined.includes("workshop") ||
-        combined.includes("ieee") ||
-        combined.includes("acm") ||
-        combined.includes("dac") ||
-        combined.includes("date") ||
-        combined.includes("qce") ||
-        combined.includes("icrc")
-      ) {
-        return "conference";
-      }
-
-      if (
-        type.includes("journal") ||
-        combined.includes("journal") ||
-        combined.includes("transactions") ||
-        combined.includes("scientific reports") ||
-        combined.includes("epj quantum technology") ||
-        combined.includes("nature")
+        venue.includes("ieee access") ||
+        venue.includes("scientific reports") ||
+        venue.includes("epj quantum technology") ||
+        venue.includes("journal") ||
+        venue.includes("transactions") ||
+        venue.includes("nature")
       ) {
         return "journal";
       }
-
+    
+      if (
+        type.includes("conference") ||
+        type.includes("proceedings") ||
+        venue.includes("conference") ||
+        venue.includes("proceedings") ||
+        venue.includes("symposium") ||
+        venue.includes("workshop") ||
+        venue.includes("dac") ||
+        venue.includes("date") ||
+        venue.includes("qce") ||
+        venue.includes("icrc") ||
+        venue.includes("icsa")
+      ) {
+        return "conference";
+      }
+    
+      if (type.includes("journal")) {
+        return "journal";
+      }
+    
       return "other";
     }
-
     function escapeHtml(value) {
       return String(value || "")
         .replaceAll("&", "&amp;")
