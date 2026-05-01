@@ -320,9 +320,35 @@
       font-size: 14px;
     }
 
+    .publication-filter-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 26px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .publication-filter {
+      min-width: 220px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 11px;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
     .publication-groups {
       display: grid;
       gap: 26px;
+    }
+
+    .publication-group.hidden {
+      display: none;
     }
 
     .publication-group h3 {
@@ -661,6 +687,7 @@
         <span class="eyebrow">Publications</span>
         <h1>Publications</h1>
         <p class="lead">
+          Selected publications are curated manually. The complete publication list below is designed to be fetched from ORCID and grouped by publication type.
         </p>
       </div>
 
@@ -713,23 +740,34 @@
 
         <div id="orcid-status" class="orcid-status">Add your ORCID iD in the code to load publications automatically.</div>
 
+        <div class="publication-filter-wrap">
+          <label for="publication-filter">Show:</label>
+          <select id="publication-filter" class="publication-filter">
+            <option value="all">All publications</option>
+            <option value="journal">Journal Articles</option>
+            <option value="conference">Conference Papers</option>
+            <option value="preprint">Preprints</option>
+            <option value="other">Other Publications</option>
+          </select>
+        </div>
+
         <div class="publication-groups">
-          <div class="publication-group">
+          <div class="publication-group" data-category="journal">
             <h3 class="category-title journal-title">Journal Articles <span id="journal-count" class="count-badge"></span></h3>
             <div id="journal-publications" class="simple-list compact-list"></div>
           </div>
 
-          <div class="publication-group">
+          <div class="publication-group" data-category="conference">
             <h3 class="category-title conference-title">Conference Papers <span id="conference-count" class="count-badge"></span></h3>
             <div id="conference-publications" class="simple-list compact-list"></div>
           </div>
 
-          <div class="publication-group">
+          <div class="publication-group" data-category="preprint">
             <h3 class="category-title preprint-title">Preprints <span id="preprint-count" class="count-badge"></span></h3>
             <div id="preprint-publications" class="simple-list compact-list"></div>
           </div>
 
-          <div class="publication-group">
+          <div class="publication-group" data-category="other">
             <h3 class="category-title other-title">Other Publications <span id="other-count" class="count-badge"></span></h3>
             <div id="other-publications" class="simple-list compact-list"></div>
           </div>
@@ -857,6 +895,20 @@
       showPage(location.hash.replace("#", "") || "about");
     });
 
+    const publicationFilter = document.getElementById("publication-filter");
+    if (publicationFilter) {
+      publicationFilter.addEventListener("change", () => {
+        filterPublicationGroups(publicationFilter.value);
+      });
+    }
+
+    function filterPublicationGroups(category) {
+      document.querySelectorAll(".publication-group").forEach(group => {
+        const shouldShow = category === "all" || group.dataset.category === category;
+        group.classList.toggle("hidden", !shouldShow);
+      });
+    }
+
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const ORCID_ID = "0000-0003-2023-6371"; // Replace with your ORCID iD
@@ -866,6 +918,7 @@
       if (orcidLoaded || ORCID_ID === "0000-0000-0000-0000") {
         const status = document.getElementById("orcid-status");
         if (status && ORCID_ID === "0000-0000-0000-0000") {
+          status.textContent = "Add your ORCID iD in the code to automatically load the full publication list.";
         }
         return;
       }
@@ -904,15 +957,11 @@
         renderPublications(publications);
         status.textContent = `Loaded ${publications.length} publications from ORCID.`;
       } catch (error) {
-      console.error("ORCID loading error:", error);
-      if (status) {
-        status.textContent =
-          "Could not load ORCID publications. Direct browser fetching from ORCID may be blocked. Use a cached publications.json file instead.";
+        status.textContent = "Could not load ORCID publications automatically. Please check the ORCID iD or use a cached publications JSON file.";
       }
     }
-  }
 
-  function renderPublications(publications) {
+    function renderPublications(publications) {
       const containers = {
         journal: document.getElementById("journal-publications"),
         conference: document.getElementById("conference-publications"),
@@ -931,7 +980,9 @@
         if (container) container.innerHTML = "";
       });
 
-      publications.forEach(pub => {
+      const uniquePublications = removeDuplicatePublications(publications);
+
+      uniquePublications.forEach(pub => {
         const category = mapPublicationToCategory(pub);
         const container = containers[category] || containers.other;
         if (!container) return;
@@ -950,13 +1001,45 @@
             <h2>${titleHtml}</h2>
             <p>${escapeHtml([pub.journalTitle, pub.year].filter(Boolean).join(" · "))}</p>
           </div>
-          <span class="tag tag-${category}">${escapeHtml(pub.type)}</span>
+          <span class="tag tag-${category}">${getCategoryLabel(category)}</span>
         `;
 
         container.appendChild(article);
       });
 
       updatePublicationCounts(counts);
+      filterPublicationGroups(document.getElementById("publication-filter")?.value || "all");
+    }
+
+    function removeDuplicatePublications(publications) {
+      const seen = new Set();
+
+      return publications.filter(pub => {
+        const key = normalizeTitle(pub.title);
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
+    function normalizeTitle(title) {
+      return String(title || "")
+        .toLowerCase()
+        .replace(/[–—]/g, "-")
+        .replace(/[^a-z0-9\s]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function getCategoryLabel(category) {
+      const labels = {
+        journal: "journal",
+        conference: "conference",
+        preprint: "preprint",
+        other: "other"
+      };
+
+      return labels[category] || "other";
     }
 
     function updatePublicationCounts(counts) {
@@ -981,7 +1064,8 @@
       const venue = String(pub.journalTitle || "").toLowerCase();
       const url = String(pub.url || "").toLowerCase();
       const combined = `${type} ${title} ${venue} ${url}`;
-    
+
+      // Preprints first: ORCID often stores arXiv records as type="journal-article".
       if (
         combined.includes("arxiv") ||
         combined.includes("preprint") ||
@@ -992,20 +1076,20 @@
       ) {
         return "preprint";
       }
-    
+
+      // Journals before conferences: IEEE Access is a journal, not a conference.
       if (
         venue.includes("ieee access") ||
-        type.includes("ieee access") ||
         venue.includes("scientific reports") ||
         venue.includes("epj quantum technology") ||
-        venue.includes("journal") ||
-        type.includes("journal") ||
         venue.includes("transactions") ||
-        venue.includes("nature")
+        venue.includes("journal") ||
+        venue.includes("nature") ||
+        type.includes("journal")
       ) {
         return "journal";
       }
-    
+
       if (
         type.includes("conference") ||
         type.includes("proceedings") ||
@@ -1021,13 +1105,10 @@
       ) {
         return "conference";
       }
-    
-      if (type.includes("journal")) {
-        return "journal";
-      }
-    
+
       return "other";
     }
+
     function escapeHtml(value) {
       return String(value || "")
         .replaceAll("&", "&amp;")
@@ -1038,7 +1119,7 @@
     }
 
     showPage(location.hash.replace("#", "") || "about");
-    // loadOrcidPublications();
+    loadOrcidPublications();
   </script>
 </body>
 </html>
