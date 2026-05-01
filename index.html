@@ -155,6 +155,67 @@
       align-items: start;
     }
 
+    .about-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      gap: 46px;
+      align-items: start;
+    }
+
+    .about-copy h1 {
+      margin-bottom: 10px;
+    }
+
+    .role-line {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .bio-lead {
+      margin-bottom: 18px;
+    }
+
+    .bio-text {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .profile-card-photo {
+      text-align: left;
+    }
+
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .about-keywords {
+      margin-top: 24px;
+    }
+
     .actions {
       display: flex;
       flex-wrap: wrap;
@@ -585,12 +646,14 @@
       }
 
       .about-layout,
+      .about-hero,
       .contact-box {
         grid-template-columns: 1fr;
         gap: 24px;
       }
 
-      .content-grid {
+      .content-grid,
+      .about-details {
         grid-template-columns: 1fr;
       }
 
@@ -637,14 +700,18 @@
   <main class="container">
     <!-- ABOUT / HOME PAGE -->
     <section id="about" class="page active" data-title="About">
-      <div class="about-layout">
-        <div>
-          <div class="page-header">
-            <h1>Trainable and Hardware-Aware Quantum Machine Learning</h1>
-            <p class="lead">
-              Researching hybrid quantum neural networks, barren plateau mitigation, noise-resilient QML, and scalable quantum algorithms for near-term quantum systems.
-            </p>
-          </div>
+      <div class="about-hero">
+        <div class="about-copy">
+          <h1>Dr. Muhammad Kashif</h1>
+          <p class="role-line">Postdoctoral Research Associate · Center for Quantum and Topological Systems, NYU Abu Dhabi</p>
+
+          <p class="lead bio-lead">
+            I am a researcher in quantum machine learning and quantum algorithms, with a focus on designing trainable, noise-resilient, and hardware-aware quantum learning models for near-term quantum systems.
+          </p>
+
+          <p class="bio-text">
+            My research investigates how hybrid quantum-classical architectures can be designed, analyzed, and benchmarked beyond idealized circuit assumptions. I am particularly interested in trainability, barren plateau mitigation, expressibility, quantum neural architecture search, and practical quantum algorithms for real-world applications.
+          </p>
 
           <div class="actions">
             <a class="button primary" href="cv.pdf" target="_blank" rel="noreferrer">View CV</a>
@@ -652,38 +719,40 @@
             <a class="button" href="https://www.linkedin.com/in/muhammad-kashif-29191571/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a class="button" href="https://www.scopus.com/authid/detail.uri?authorId=57197631441&origin=resultslist" target="_blank" rel="noreferrer">Scopus</a>
           </div>
-
-          <div class="keywords" aria-label="Research keywords">
-            <span class="keyword">Quantum Machine Learning</span>
-            <span class="keyword">Hybrid Quantum Neural Networks</span>
-            <span class="keyword">Trainability</span>
-            <span class="keyword">Barren Plateaus</span>
-            <span class="keyword">Noise-resilient QNNs</span>
-            <span class="keyword">Quantum Architecture Search</span>
-          </div>
-
-          <div class="content-grid" style="margin-top: 34px;">
-            <div class="card">
-              <h2>Research focus</h2>
-              <p>Trainability and expressibility of quantum neural networks, barren plateau mitigation, noise-resilient QNN design, and hybrid quantum-classical learning systems.</p>
-            </div>
-            <div class="card">
-              <h2>Broader interests</h2>
-              <p>Hardware-aware quantum algorithms, quantum architecture search, analytical quantum cost modeling, and QML applications in finance, healthcare, classification, and path planning.</p>
-            </div>
-          </div>
         </div>
 
-        <aside class="profile-card" aria-label="Profile summary">
-          <div class="profile-initials">MK</div>
-          <h2>Dr. Muhammad Kashif</h2>
-          <p>Researcher in quantum machine learning, hybrid quantum-classical architectures, and quantum algorithms for near-term quantum systems.</p>
+        <aside class="profile-card profile-card-photo" aria-label="Profile summary">
+          <div class="photo-frame">
+            <img src="profile.jpg" alt="Dr. Muhammad Kashif" />
+          </div>
+          <h2>Muhammad Kashif</h2>
+          <p>Quantum machine learning · Hybrid quantum neural networks · Quantum algorithms</p>
           <ul class="profile-list">
             <li><strong>Current role:</strong> Postdoctoral Research Associate, CQTS, NYU Abu Dhabi</li>
             <li><strong>Leadership:</strong> Research Team Lead, eBRAIN Lab</li>
             <li><strong>PhD:</strong> Computer Science and Engineering, Hamad Bin Khalifa University</li>
           </ul>
         </aside>
+      </div>
+
+      <div class="about-details">
+        <div class="card">
+          <h2>Research focus</h2>
+          <p>Trainability and expressibility of quantum neural networks, barren plateau mitigation, noise-resilient QNN design, and hybrid quantum-classical learning systems.</p>
+        </div>
+        <div class="card">
+          <h2>Broader interests</h2>
+          <p>Hardware-aware quantum algorithms, quantum architecture search, analytical quantum cost modeling, and QML applications in finance, healthcare, classification, and path planning.</p>
+        </div>
+      </div>
+
+      <div class="keywords about-keywords" aria-label="Research keywords">
+        <span class="keyword">Quantum Machine Learning</span>
+        <span class="keyword">Hybrid Quantum Neural Networks</span>
+        <span class="keyword">Trainability</span>
+        <span class="keyword">Barren Plateaus</span>
+        <span class="keyword">Noise-resilient QNNs</span>
+        <span class="keyword">Quantum Architecture Search</span>
       </div>
     </section>
 
@@ -722,13 +791,14 @@
       <div class="page-header">
         <h1>Publications</h1>
         <p class="lead">
+          Selected publications are curated manually. The complete publication list below is designed to be fetched from ORCID and grouped by publication type.
         </p>
       </div>
 
       <div class="pub-section">
         <div class="subsection-heading compact-heading">
           <h2 class="section-title-pill selected-title">Selected Publications <span id="selected-count" class="count-badge"></span></h2>
-          <p>Highlighted papers related to quantum machine learning</p>
+          <p>Highlighted papers related to quantum machine learning, hybrid quantum neural networks, trainability, and quantum algorithms.</p>
         </div>
 
         <div class="simple-list selected-publications" id="selected-publications">
@@ -739,8 +809,10 @@
       <div class="pub-section full-publications">
         <div class="subsection-heading compact-heading">
           <h2>Full Publication List</h2>
+          <p>Automatically fetched from ORCID and grouped by publication type.</p>
         </div>
 
+        <div id="orcid-status" class="orcid-status">Add your ORCID iD in the code to load publications automatically.</div>
 
         <div class="publication-filter-wrap">
           <label for="publication-filter" class="publication-filter-label">
@@ -784,7 +856,7 @@
     <section id="projects" class="page" data-title="Projects">
       <div class="page-header">
         <h1>Projects and research code</h1>
-        <p class="lead">Research codes are not publically shared due to ongoing inetrconnected research directions. Can be made available on reasonable request.</p>
+        <p class="lead">Representative research code and experimental directions. Repository links can be added when available.</p>
       </div>
 
       <div class="content-grid">
@@ -926,10 +998,9 @@
     let orcidLoaded = false;
 
     const SELECTED_PUBLICATION_TITLES = [
-      "Closing the Loop: Resource-aware Hybrid NAS Guided by Analytical and Hardware-Calibrated Quantum Cost Modeling",
-      "Late Breaking Results: Hardware-Aware Compilation Reshapes Trainability in Variational Quantum Circuits",
       "Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?",
-      "Alleviating barren plateaus in parameterized quantum machine learning circuits: Investigating advanced parameter initialization strategies",
+      "FAQNAS: FLOPs-aware Hybrid Quantum Neural Architecture Search using Genetic Algorithm",
+      "Alleviating Barren Plateaus in Parameterized Quantum Machine Learning Circuits",
       "ResQNets: A Residual Approach for Mitigating Barren Plateaus in Quantum Neural Networks"
     ];
 
@@ -995,6 +1066,7 @@
         publications.sort((a, b) => String(b.year).localeCompare(String(a.year)));
 
         renderPublications(publications);
+        status.textContent = `Loaded ${publications.length} publications from ORCID.`;
       } catch (error) {
         status.textContent = "Could not load ORCID publications automatically. Please check the ORCID iD or use a cached publications JSON file.";
       }
