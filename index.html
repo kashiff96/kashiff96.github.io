@@ -321,24 +321,29 @@
     }
 
     .publication-filter-wrap {
+      width: 100%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 10px;
-      margin: 18px 0 26px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 600;
+      margin: 24px 0 32px;
     }
-
+    
+    .publication-filter-label {
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    
     .publication-filter {
-      min-width: 220px;
+      width: 100%;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      border-radius: 10px;
-      padding: 8px 11px;
+      border-radius: 14px;
+      padding: 14px 16px;
       font: inherit;
-      font-size: 14px;
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
     }
 
@@ -904,7 +909,16 @@
 
     function filterPublicationGroups(category) {
       document.querySelectorAll(".publication-group").forEach(group => {
-        const shouldShow = category === "all" || group.dataset.category === category;
+    
+        if (!category) {
+          group.classList.add("hidden");
+          return;
+        }
+    
+        const shouldShow =
+          category === "all" ||
+          group.dataset.category === category;
+    
         group.classList.toggle("hidden", !shouldShow);
       });
     }
@@ -1008,7 +1022,7 @@
       });
 
       updatePublicationCounts(counts);
-      filterPublicationGroups(document.getElementById("publication-filter")?.value || "all");
+      filterPublicationGroups(document.getElementById("publication-filter")?.value || "");
     }
 
     function removeDuplicatePublications(publications) {
