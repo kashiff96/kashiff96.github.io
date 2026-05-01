@@ -1140,11 +1140,11 @@
         },
         shape: { type: "circle" },
         opacity: {
-          value: { min: 0.04, max: 0.18 },
+          value: { min: 0.15, max: 0.5 },
           animation: {
             enable: true,
             speed: 0.6,
-            minimumValue: 0.03,
+            minimumValue: 0.1,
             sync: false
           }
         },
@@ -1160,10 +1160,10 @@
         },
         links: {
           enable: true,
-          distance: 160,
+          distance: 165,
           color: "#60a5fa",
-          opacity: 0.08,
-          width: 0.8
+          opacity: 0.2,
+          width: 1.0
         },
         move: {
           enable: true,
@@ -1181,7 +1181,7 @@
           resize: true
         },
         modes: {
-          grab: { distance: 190, links: { opacity: 0.16 } },
+          grab: { distance: 190, links: { opacity: 0.3 } },
           push: { quantity: 4 }
         }
       }
