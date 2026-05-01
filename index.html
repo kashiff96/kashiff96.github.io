@@ -214,7 +214,7 @@
     }
 
     .about-keywords {
-      margin-top: 24px;
+      margin-top: 22px;
     }
 
     .actions {
@@ -761,11 +761,26 @@
             My research investigates how hybrid quantum-classical architectures can be designed, analyzed, and benchmarked beyond idealized circuit assumptions. I am particularly interested in trainability, barren plateau mitigation, expressibility, quantum neural architecture search, and practical quantum algorithms for real-world applications.
           </p>
 
-          <div class="actions">
-            <a class="button primary" href="cv.pdf" target="_blank" rel="noreferrer">View CV</a>
-            <a class="button" href="https://scholar.google.com/citations?user=OqsN2QYAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
-            <a class="button" href="https://www.linkedin.com/in/muhammad-kashif-29191571/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="button" href="https://www.scopus.com/authid/detail.uri?authorId=57197631441&origin=resultslist" target="_blank" rel="noreferrer">Scopus</a>
+          $1
+
+          <div class="about-inline-cards">
+            <div class="card">
+              <h2>Research focus</h2>
+              <p>Trainability and expressibility of quantum neural networks, barren plateau mitigation, noise-resilient QNN design, and hybrid quantum-classical learning systems.</p>
+            </div>
+            <div class="card">
+              <h2>Broader interests</h2>
+              <p>Hardware-aware quantum algorithms, quantum architecture search, analytical quantum cost modeling, and QML applications in finance, healthcare, classification, and path planning.</p>
+            </div>
+          </div>
+
+          <div class="keywords about-keywords" aria-label="Research keywords">
+            <span class="keyword">Quantum Machine Learning</span>
+            <span class="keyword">Hybrid Quantum Neural Networks</span>
+            <span class="keyword">Trainability</span>
+            <span class="keyword">Barren Plateaus</span>
+            <span class="keyword">Noise-resilient QNNs</span>
+            <span class="keyword">Quantum Architecture Search</span>
           </div>
         </div>
 
@@ -781,36 +796,6 @@
             <li><strong>PhD:</strong> Computer Science and Engineering, Hamad Bin Khalifa University</li>
           </ul>
         </aside>
-      </div>
-
-      <div class="about-inline-cards">
-        <div class="card">
-          <h2>Research focus</h2>
-          <p>
-            Trainability and expressibility of quantum neural networks,
-            barren plateau mitigation, noise-resilient QNN design,
-            and hybrid quantum-classical learning systems.
-          </p>
-        </div>
-      
-        <div class="card">
-          <h2>Broader interests</h2>
-          <p>
-            Hardware-aware quantum algorithms, quantum architecture
-            search, analytical quantum cost modeling, and QML
-            applications in finance, healthcare, classification,
-            and path planning.
-          </p>
-        </div>
-      </div>
-
-      <div class="keywords about-keywords" aria-label="Research keywords">
-        <span class="keyword">Quantum Machine Learning</span>
-        <span class="keyword">Hybrid Quantum Neural Networks</span>
-        <span class="keyword">Trainability</span>
-        <span class="keyword">Barren Plateaus</span>
-        <span class="keyword">Noise-resilient QNNs</span>
-        <span class="keyword">Quantum Architecture Search</span>
       </div>
     </section>
 
@@ -835,7 +820,7 @@
           </div>
 
           <div class="research-feature-image">
-            <img src="R1.png" alt="Trainability and expressibility in QNNs" />
+            <img src="1.png" alt="Trainability and expressibility in QNNs" />
           </div>
         </section>
 
@@ -853,7 +838,7 @@
           </div>
 
           <div class="research-feature-image">
-            <img src="R2.png" alt="Hybrid quantum-classical architectures" />
+            <img src="2.png" alt="Hybrid quantum-classical architectures" />
           </div>
         </section>
 
@@ -973,6 +958,7 @@
       <div class="pub-section full-publications">
         <div class="subsection-heading compact-heading">
           <h2>Full Publication List</h2>
+          <p>Automatically fetched from ORCID and grouped by publication type.</p>
         </div>
 
         <div id="orcid-status" class="orcid-status">Add your ORCID iD in the code to load publications automatically.</div>
@@ -1203,6 +1189,7 @@
         publications.sort((a, b) => String(b.year).localeCompare(String(a.year)));
 
         renderPublications(publications);
+        status.textContent = `Loaded ${publications.length} publications from ORCID.`;
       } catch (error) {
         status.textContent = "Could not load ORCID publications automatically. Please check the ORCID iD or use a cached publications JSON file.";
       }
