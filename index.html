@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dr. Muhammad Kashif | Quantum Machine Learning</title>
+  <meta name="description" content="Research profile of Dr. Muhammad Kashif, working on quantum machine learning, hybrid quantum neural networks, trainability, and quantum algorithms." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    #particles-js {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 45%, #f5f3ff 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(37, 99, 235, 0.20), transparent 28%),
+        radial-gradient(circle at 82% 16%, rgba(124, 58, 237, 0.18), transparent 30%),
+        radial-gradient(circle at 52% 86%, rgba(14, 165, 233, 0.16), transparent 34%),
+        linear-gradient(rgba(248, 250, 252, 0.22), rgba(248, 250, 252, 0.34));
+    }
+
+
+    .quantum-orb {
+      position: fixed;
+      z-index: -1;
+      pointer-events: none;
+      border-radius: 999px;
+      opacity: 0.55;
+      animation: floatOrb 14s ease-in-out infinite alternate;
+    }
+
+    .quantum-orb.orb-1 {
+      width: 260px;
+      height: 260px;
+      left: 5%;
+      top: 16%;
+      border: 1px solid rgba(37, 99, 235, 0.30);
+      box-shadow: 0 0 60px rgba(37, 99, 235, 0.18), inset 0 0 30px rgba(124, 58, 237, 0.12);
+    }
+
+    .quantum-orb.orb-2 {
+      width: 340px;
+      height: 340px;
+      right: 4%;
+      bottom: 9%;
+      border: 1px solid rgba(124, 58, 237, 0.28);
+      box-shadow: 0 0 70px rgba(124, 58, 237, 0.18), inset 0 0 35px rgba(14, 165, 233, 0.12);
+      animation-delay: -5s;
+    }
+
+    @keyframes floatOrb {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(24px, -28px, 0) scale(1.06); }
+    }
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --text: #0f172a;
+      --muted: #475569;
+      --light-muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #1d4ed8;
+      --accent-soft: #dbeafe;
+      --max-width: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: transparent;
+      overflow-x: hidden;
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 250, 252, 0.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+      color: var(--text);
+    }
+
+    .brand:hover {
+      text-decoration: none;
+    }
+
+    .brand strong {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .brand span {
+      font-size: 12px;
+      color: var(--light-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      text-decoration: none;
+    }
+
+    main {
+      min-height: calc(100vh - 130px);
+      padding: 54px 0 64px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page-header {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 14px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(270px, 0.65fr);
+      gap: 44px;
+      align-items: start;
+    }
+
+    .about-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      gap: 46px;
+      align-items: start;
+    }
+
+    .about-copy h1 {
+      margin-bottom: 10px;
+    }
+
+    .role-line {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .bio-lead {
+      margin-bottom: 18px;
+    }
+
+    .bio-text {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .profile-card-photo {
+      text-align: left;
+    }
+
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-inline-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+      max-width: 760px;
+    }
+
+    .about-keywords {
+      margin-top: 22px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 26px 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--surface);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .button:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-width: 760px;
+    }
+
+    .keyword {
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 10px;
+    }
+
+    .profile-card,
+    .card,
+    .contact-box,
+    .timeline-item {
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226, 232, 240, 0.88);
+      border-radius: 16px;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.05);
+    }
+
+    .profile-card {
+      padding: 24px;
+    }
+
+    .profile-initials {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: var(--surface-alt);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      border: 1px solid var(--border);
+    }
+
+    .profile-card h2 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .profile-card p,
+    .card p,
+    .timeline-item p,
+    .contact-box p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .profile-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .research-feature {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 48px;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226, 232, 240, 0.88);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.05);
+    }
+
+    .research-feature-text h2 {
+      font-size: 28px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .research-feature-text p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .research-features-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 42px;
+    }
+
+    .research-feature-image img {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .card h2,
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .simple-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .pub-section {
+      margin-top: 30px;
+    }
+
+    .pub-section:first-of-type {
+      margin-top: 0;
+    }
+
+    .subsection-heading {
+      margin-bottom: 20px;
+      max-width: 760px;
+    }
+
+    .subsection-heading h2 {
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .compact-heading {
+      margin-bottom: 12px;
+    }
+
+    .subsection-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .full-publications {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+
+    .orcid-status {
+      color: var(--muted);
+      background: transparent;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 22px;
+      font-size: 14px;
+    }
+
+    .publication-filter-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 26px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .publication-filter {
+      min-width: 220px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 11px;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .publication-filter-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      margin: 24px 0 32px;
+    }
+
+    .publication-filter-label {
+      width: 100%;
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .publication-filter {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 16px 18px;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .publication-groups {
+      display: grid;
+      gap: 18px;
+    }
+
+    .publication-group.hidden {
+      display: none;
+    }
+
+    .publication-group h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title-pill,
+    .category-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 700;
+    }
+
+    .selected-title {
+      color: #7c2d12;
+      background: #ffedd5;
+    }
+
+    .journal-title {
+      color: #065f46;
+      background: #d1fae5;
+    }
+
+    .conference-title {
+      color: #1e40af;
+      background: #dbeafe;
+    }
+
+    .preprint-title {
+      color: #6d28d9;
+      background: #ede9fe;
+    }
+
+    .other-title {
+      color: #374151;
+      background: #f3f4f6;
+    }
+
+    .count-badge {
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .tag-selected {
+      color: #7c2d12;
+      background: #ffedd5;
+    }
+
+    .tag-journal {
+      color: #065f46;
+      background: #d1fae5;
+    }
+
+    .tag-conference {
+      color: #1e40af;
+      background: #dbeafe;
+    }
+
+    .tag-preprint {
+      color: #6d28d9;
+      background: #ede9fe;
+    }
+
+    .tag-other {
+      color: #374151;
+      background: #f3f4f6;
+    }
+
+    .compact-list {
+      gap: 4px;
+    }
+
+    .compact-list:empty::after {
+      content: "";
+      display: none;
+    }
+
+    .empty-note {
+      color: var(--muted);
+      font-size: 14px;
+      padding: 12px 0;
+    }
+
+    .list-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2px;
+      padding: 1px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .list-item:first-child {
+      padding-top: 0;
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .list-item h2,
+    .list-item h3 {
+      font-size: 16px;
+      margin-bottom: 2px;
+      line-height: 1.35;
+    }
+
+    .list-item p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .tag {
+      height: fit-content;
+      white-space: nowrap;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tag.tag-selected {
+      color: #7c2d12;
+      background: #ffedd5;
+    }
+
+    .tag.tag-journal {
+      color: #065f46;
+      background: #d1fae5;
+    }
+
+    .tag.tag-conference {
+      color: #1e40af;
+      background: #dbeafe;
+    }
+
+    .tag.tag-preprint {
+      color: #6d28d9;
+      background: #ede9fe;
+    }
+
+    .tag.tag-other {
+      color: #374151;
+      background: #f3f4f6;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      padding: 20px 22px;
+    }
+
+    .timeline-item h2,
+    .timeline-item h3 {
+      font-size: 17px;
+      margin-bottom: 3px;
+    }
+
+    .timeline-item .meta {
+      color: var(--light-muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .contact-box {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 0.6fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+
+    /* Subtle interactive hover feedback across the site */
+    .nav-links a,
+    .brand,
+    .button,
+    .keyword,
+    .card,
+    .profile-card,
+    .photo-frame,
+    .research-feature,
+    .research-feature-image img,
+    .list-item,
+    .timeline-item,
+    .contact-box,
+    .contact-links a,
+    .publication-filter {
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+    }
+
+    .card:hover,
+    .profile-card:hover,
+    .research-feature:hover,
+    .timeline-item:hover,
+    .contact-box:hover,
+    .list-item:hover {
+      transform: translateY(-3px) scale(1.012);
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.09);
+      border-color: rgba(29, 78, 216, 0.24);
+    }
+
+    .button:hover,
+    .keyword:hover,
+    .contact-links a:hover,
+    .nav-links a:hover,
+    .brand:hover,
+    .publication-filter:hover {
+      transform: translateY(-1px) scale(1.035);
+    }
+
+    .research-feature-image img:hover,
+    .photo-frame:hover {
+      transform: scale(1.025);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-links a,
+      .brand,
+      .button,
+      .keyword,
+      .card,
+      .profile-card,
+      .photo-frame,
+      .research-feature,
+      .research-feature-image img,
+      .list-item,
+      .timeline-item,
+      .contact-box,
+      .contact-links a,
+      .publication-filter {
+        transition: none;
+      }
+
+      .card:hover,
+      .profile-card:hover,
+      .research-feature:hover,
+      .timeline-item:hover,
+      .contact-box:hover,
+      .list-item:hover,
+      .button:hover,
+      .keyword:hover,
+      .contact-links a:hover,
+      .nav-links a:hover,
+      .brand:hover,
+      .publication-filter:hover,
+      .research-feature-image img:hover,
+      .photo-frame:hover {
+        transform: none;
+      }
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: rgba(248, 250, 252, 0.78);
+      backdrop-filter: blur(10px);
+      padding: 24px 0;
+      color: var(--light-muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      main {
+        padding-top: 38px;
+      }
+
+      .about-layout,
+      .about-hero,
+      .contact-box,
+      .research-feature {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .about-layout,
+      .about-hero,
+      .contact-box {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .content-grid,
+      .about-inline-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 14px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .list-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="particles-js" aria-hidden="true"></div>
+  <div class="quantum-orb orb-1" aria-hidden="true"></div>
+  <div class="quantum-orb orb-2" aria-hidden="true"></div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand nav-link" href="#about" data-page="about" aria-label="Muhammad Kashif homepage">
+        <strong>Muhammad Kashif</strong>
+        <span>Quantum Machine Learning · Quantum Algorithms</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="nav-link active" href="#about" data-page="about">About</a>
+        <a class="nav-link" href="#research" data-page="research">Research Projects</a>
+        <a class="nav-link" href="#publications" data-page="publications">Publications</a>
+        <a class="nav-link" href="#talks" data-page="talks">Talks</a>
+        <a class="nav-link" href="#contact" data-page="contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ABOUT / HOME PAGE -->
+    <section id="about" class="page active" data-title="About">
+      <div class="about-hero">
+        <div class="about-copy">
+          <h1>Dr. Muhammad Kashif</h1>
+          <p class="role-line">Postdoctoral Research Associate · Center for Quantum and Topological Systems, NYU Abu Dhabi</p>
+
+          <p class="lead bio-lead">
+            I am a researcher in quantum machine learning and quantum algorithms, with a focus on designing trainable, noise-resilient, and hardware-aware quantum learning models for near-term quantum systems.
+          </p>
+  
+          <p class="bio-text">
+            My research investigates how hybrid quantum-classical architectures can be designed, analyzed, and benchmarked beyond idealized circuit assumptions. I am particularly interested in trainability, barren plateau mitigation, expressibility, quantum neural architecture search, and practical quantum algorithms for real-world applications.
+          </p>
+
+          <div class="actions">
+            <a class="button primary" href="cv.pdf" target="_blank" rel="noreferrer">
+              CV
+            </a>
+          
+            <a class="button" 
+               href="https://www.linkedin.com/in/muhammad-kashif-29191571/" 
+               target="_blank" 
+               rel="noreferrer">
+              LinkedIn
+            </a>
+          
+            <a class="button" 
+               href="https://orcid.org/0000-0003-2023-6371" 
+               target="_blank" 
+               rel="noreferrer">
+              ORCID
+            </a>
+          </div>
+      
+
+          <div class="about-inline-cards">
+            <div class="card">
+              <h2>Research focus</h2>
+              <p>Trainability and expressibility of quantum neural networks, barren plateau mitigation, noise-resilient QNN design, and hybrid quantum-classical learning systems.</p>
+            </div>
+            <div class="card">
+              <h2>Broader interests</h2>
+              <p>Hardware-aware quantum algorithms, quantum architecture search, analytical quantum cost modeling, and QML applications in finance, healthcare, classification, and path planning.</p>
+            </div>
+          </div>
+
+          <div class="keywords about-keywords" aria-label="Research keywords">
+            <span class="keyword">Quantum Machine Learning</span>
+            <span class="keyword">Hybrid Quantum Neural Networks</span>
+            <span class="keyword">Trainability</span>
+            <span class="keyword">Barren Plateaus</span>
+            <span class="keyword">Noise-resilient QNNs</span>
+            <span class="keyword">Quantum Architecture Search</span>
+          </div>
+        </div>
+
+        <aside class="profile-card profile-card-photo" aria-label="Profile summary">
+          <div class="photo-frame">
+            <img src="profile.jpg" alt="Dr. Muhammad Kashif" />
+          </div>
+          <h2>Muhammad Kashif</h2>
+          <p>Quantum machine learning · Hybrid quantum neural networks · Quantum algorithms</p>
+          <ul class="profile-list">
+            <li><strong>Current role:</strong> Postdoctoral Research Associate, CQTS, NYU Abu Dhabi</li>
+            <li><strong>Leadership:</strong> Research Team Lead, eBRAIN Lab</li>
+            <li><strong>PhD:</strong> Computer Science and Engineering, Hamad Bin Khalifa University</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- RESEARCH PROJECTS PAGE -->
+    <section id="research" class="page" data-title="Research Projects">
+      <div class="page-header">
+        <h1>Research Projects</h1>
+        <p class="lead">Selected research directions and project areas connecting quantum machine learning, hybrid quantum-classical architectures, and practical near-term quantum algorithms.</p>
+      </div>
+
+      <section class="research-feature">
+          <div class="research-feature-text">
+            <h2>Trainability and Expressibility in QNNs</h2>
+
+            <p>
+              Investigating how trainability and expressibility interact in parameterized quantum circuits and hybrid quantum neural networks. This includes studying barren plateaus, gradient propagation, circuit depth/width trade-offs, and how hybrid architectures reshape optimization landscapes beyond standard PQC assumptions.
+            </p>
+
+            <p>
+              Current work focuses on understanding whether the commonly assumed expressibility–trainability trade-off still holds in hybrid quantum-classical models and how this impacts neural architecture search for QML systems.
+            </p>
+          </div>
+
+          <div class="research-feature-image">
+            <img src="R1.png" alt="Trainability and expressibility in QNNs" />
+          </div>
+        </section>
+
+        <section class="research-feature">
+          <div class="research-feature-text">
+            <h2>Hybrid Quantum-Classical Architectures</h2>
+
+            <p>
+              Exploring how quantum layers interact with classical pre-processing and post-processing modules in hybrid learning systems. Research investigates when quantum layers provide practical benefits in representation learning, optimization, robustness, and generalization under near-term hardware constraints.
+            </p>
+
+            <p>
+              This includes hybrid quantum neural networks, hardware-aware architectures, noise-resilient QML, and resource-aware quantum neural architecture search methods.
+            </p>
+          </div>
+
+          <div class="research-feature-image">
+            <img src="R2.png" alt="Hybrid quantum-classical architectures" />
+          </div>
+        </section>
+
+        <div class="research-features-stack">
+          <section class="research-feature">
+            <div class="research-feature-text">
+              <h2>Noise-Resilient Quantum Learning</h2>
+
+              <p>
+                Designing quantum learning models and training strategies that remain robust under realistic noise and imperfect quantum operations. This includes studying whether noise can sometimes aid optimization, improve generalization, or mitigate barren plateau effects in near-term quantum systems.
+              </p>
+
+              <p>
+                Current work explores noise-aware training, hardware-aware QML, quantum error mitigation, and robust hybrid architectures for deployment on NISQ-era processors.
+              </p>
+            </div>
+
+            <div class="research-feature-image">
+              <img src="R3.png" alt="Noise-resilient QML" />
+            </div>
+          </section>
+
+          <section class="research-feature">
+            <div class="research-feature-text">
+              <h2>Quantum Optimization and Applications</h2>
+
+              <p>
+                Exploring quantum machine learning and quantum optimization for real-world application domains including finance, healthcare, transportation, classification, and decision-making systems.
+              </p>
+
+              <p>
+                Research investigates how variational quantum algorithms and hybrid optimization workflows can provide scalable solutions under realistic computational and hardware constraints.
+              </p>
+            </div>
+
+            <div class="research-feature-image">
+              <img src="R4.png" alt="Quantum optimization and applications" />
+            </div>
+          </section>
+
+          <section class="research-feature">
+            <div class="research-feature-text">
+              <h2>Quantum Resource Modeling and Benchmarking</h2>
+
+              <p>
+                Building unified classical–quantum cost representations for benchmarking hybrid quantum systems under realistic deployment conditions. This includes FLOPs-aware HQNN analysis, analytical runtime estimation, and hardware-calibrated evaluation pipelines for comparing quantum and classical resource trade-offs.
+              </p>
+
+              <p>
+                The goal is to establish realistic benchmarking methodologies that move beyond idealized quantum evaluations and enable practical comparison between classical and hybrid systems.
+              </p>
+            </div>
+
+            <div class="research-feature-image">
+              <img src="R5.png" alt="Quantum resource modeling and benchmarking" />
+            </div>
+          </section>
+
+          <section class="research-feature">
+            <div class="research-feature-text">
+              <h2>Resource-Aware Hybrid Quantum Neural Architecture Search</h2>
+
+              <p>
+                Designing multi-objective neural architecture search frameworks for hybrid quantum neural networks (HQNNs), jointly optimizing accuracy, trainability, parameter efficiency, and hardware cost.
+              </p>
+
+              <p>
+                This work explores cross-domain co-adaptation between classical and quantum components while incorporating realistic resource constraints such as FLOPs, qubit overhead, routing complexity, and execution latency.
+              </p>
+            </div>
+
+            <div class="research-feature-image">
+              <img src="R6.png" alt="Resource-aware HQNN architecture search" />
+            </div>
+          </section>
+
+          <section class="research-feature">
+            <div class="research-feature-text">
+              <h2>Quantum for Finance</h2>
+
+              <p>
+                Developing hybrid quantum-classical workflows for portfolio optimization, option pricing, risk analysis, and finance-oriented decision-making problems.
+              </p>
+
+              <p>
+                Current interests include quantum optimization algorithms, variational quantum circuits for financial modeling, and resource-aware quantum pipelines for practical financial applications.
+              </p>
+            </div>
+
+            <div class="research-feature-image">
+              <img src="R7.png" alt="Quantum for finance" />
+            </div>
+          </section>
+        </div>
+      </section>
+
+    <!-- PUBLICATIONS PAGE -->
+    <section id="publications" class="page" data-title="Publications">
+      <div class="page-header">
+        <h1>Publications</h1>
+        <p class="lead">
+        </p>
+      </div>
+
+      <div class="pub-section">
+        <div class="subsection-heading compact-heading">
+          <h2 class="section-title-pill selected-title">Selected Publications <span id="selected-count" class="count-badge"></span></h2>
+          <p>Highlighted papers related to quantum machine learning, hybrid quantum neural networks, trainability, and quantum algorithms.</p>
+        </div>
+
+        <div class="simple-list selected-publications" id="selected-publications">
+          <p class="empty-note">Selected publications will appear after ORCID publications are loaded.</p>
+        </div>
+      </div>
+
+      <div class="pub-section full-publications">
+        <div class="subsection-heading compact-heading">
+          <h2>Full Publication List</h2>
+        </div>
+
+
+        <div class="publication-filter-wrap">
+          <label for="publication-filter" class="publication-filter-label">
+            See all my papers by category (journal, conference, preprint, etc.)
+          </label>
+          <select id="publication-filter" class="publication-filter">
+            <option value="" selected>Select publication category</option>
+            <option value="all">All Publications</option>
+            <option value="journal">Journal Articles</option>
+            <option value="conference">Conference Papers</option>
+            <option value="preprint">Preprints</option>
+            <option value="other">Other Publications</option>
+          </select>
+        </div>
+
+        <div class="publication-groups">
+          <div class="publication-group hidden" data-category="journal">
+            <h3 class="category-title journal-title">Journal Articles <span id="journal-count" class="count-badge"></span></h3>
+            <div id="journal-publications" class="simple-list compact-list"></div>
+          </div>
+
+          <div class="publication-group hidden" data-category="conference">
+            <h3 class="category-title conference-title">Conference Papers <span id="conference-count" class="count-badge"></span></h3>
+            <div id="conference-publications" class="simple-list compact-list"></div>
+          </div>
+
+          <div class="publication-group hidden" data-category="preprint">
+            <h3 class="category-title preprint-title">Preprints <span id="preprint-count" class="count-badge"></span></h3>
+            <div id="preprint-publications" class="simple-list compact-list"></div>
+          </div>
+
+          <div class="publication-group hidden" data-category="other">
+            <h3 class="category-title other-title">Other Publications <span id="other-count" class="count-badge"></span></h3>
+            <div id="other-publications" class="simple-list compact-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- TALKS PAGE -->
+    <section id="talks" class="page" data-title="Talks">
+      <div class="page-header">
+        <h1>Talks and presentations</h1>
+        <p class="lead">Selected conference presentations and research talks.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <h2>ACM/IEEE Design Automation Conference (DAC)</h2>
+          <div class="meta">June 2025 · San Francisco, USA</div>
+          <p>Presented work on computational advantage in hybrid quantum neural networks.</p>
+        </article>
+
+        <article class="timeline-item">
+          <h2>IEEE Quantum Week / QCE</h2>
+          <div class="meta">September 2025 · New Mexico, USA</div>
+          <p>Presented research on quantum algorithms for portfolio optimization.</p>
+        </article>
+
+        <article class="timeline-item">
+          <h2>IEEE International Conference on Rebooting Computing (ICRC)</h2>
+          <div class="meta">December 2024 · San Diego, USA</div>
+          <p>Presented work on parameter initialization and barren plateaus in QNNs.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section id="contact" class="page" data-title="Contact">
+      <div class="page-header">
+        <h1>Contact</h1>
+        <p class="lead">For research collaborations, student projects, invited talks, reviewing opportunities, or discussions related to QML and quantum algorithms, please reach out by email.</p>
+      </div>
+
+      <div class="contact-box">
+        <div>
+          <p>I am interested in collaborations on quantum machine learning, hybrid QNNs, efficient quantum architecture search, and application-driven quantum algorithms.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:muhammadkashif@nyu.edu">muhammadkashif@nyu.edu</a>
+          <a href="mailto:muhammadkashif038@gmail.com">muhammadkashif038@gmail.com</a>
+          <a href="https://www.linkedin.com/in/muhammad-kashif-29191571/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://scholar.google.com/citations?user=OqsN2QYAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Muhammad Kashif
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+  <script>
+    tsParticles.load("particles-js", {
+      fullScreen: { enable: false },
+      fpsLimit: 60,
+      detectRetina: true,
+      background: { color: "transparent" },
+      particles: {
+        number: {
+          value: 165,
+          density: { enable: true, area: 800 }
+        },
+        color: {
+          value: ["#2563eb", "#7c3aed", "#38bdf8", "#ffffff"]
+        },
+        shape: { type: "circle" },
+        opacity: {
+          value: { min: 0.28, max: 0.8 },
+          animation: {
+            enable: true,
+            speed: 0.9,
+            minimumValue: 0.18,
+            sync: false
+          }
+        },
+        size: {
+          value: { min: 1.8, max: 7 },
+          animation: {
+            enable: true,
+            speed: 2.0,
+            minimumValue: 1.2,
+            sync: false
+          }
+        },
+        links: {
+          enable: true,
+          distance: 175,
+          color: "#60a5fa",
+          opacity: 0.34,
+          width: 1.25
+        },
+        move: {
+          enable: true,
+          speed: 1.45,
+          direction: "none",
+          random: true,
+          straight: false,
+          outModes: { default: "out" }
+        }
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "grab" },
+          onClick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 190, links: { opacity: 0.62 } },
+          push: { quantity: 4 }
+        }
+      }
+    });
+  </script>
+
+  <script>
+    const pages = document.querySelectorAll(".page");
+    const navLinks = document.querySelectorAll(".nav-link[data-page]");
+
+    function showPage(pageId) {
+      const target = document.getElementById(pageId) || document.getElementById("about");
+
+      pages.forEach(page => {
+        page.classList.toggle("active", page === target);
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.dataset.page === target.id);
+      });
+
+      const pageTitle = target.dataset.title || "About";
+      document.title = `${pageTitle} | Dr. Muhammad Kashif`;
+      window.scrollTo({ top: 0, behavior: "instant" });
+
+      if (target.id === "publications") {
+        loadOrcidPublications();
+      }
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        const pageId = link.dataset.page;
+        history.pushState({ pageId }, "", `#${pageId}`);
+        showPage(pageId);
+      });
+    });
+
+    window.addEventListener("popstate", () => {
+      showPage(location.hash.replace("#", "") || "about");
+    });
+
+    const publicationFilter = document.getElementById("publication-filter");
+    if (publicationFilter) {
+      publicationFilter.addEventListener("change", () => {
+        filterPublicationGroups(publicationFilter.value);
+      });
+    }
+
+    function filterPublicationGroups(category) {
+      document.querySelectorAll(".publication-group").forEach(group => {
+        if (!category) {
+          group.classList.add("hidden");
+          return;
+        }
+
+        if (category === "all") {
+          group.classList.remove("hidden");
+          return;
+        }
+
+        group.classList.toggle("hidden", group.dataset.category !== category);
+      });
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const ORCID_ID = "0000-0003-2023-6371"; // Replace with your ORCID iD
+    let orcidLoaded = false;
+
+    const SELECTED_PUBLICATION_TITLES = [
+      "Closing the Loop: Resource-aware Hybrid NAS Guided by Analytical and Hardware-Calibrated Quantum Cost Modeling",
+      "Late Breaking Results: Hardware-Aware Compilation Reshapes Trainability in Variational Quantum Circuits",
+      "Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?",
+      "Alleviating barren plateaus in parameterized quantum machine learning circuits: Investigating advanced parameter initialization strategies",
+      "ResQNets: A Residual Approach for Mitigating Barren Plateaus in Quantum Neural Networks"
+    ];
+
+    async function loadOrcidPublications() {
+      if (orcidLoaded || ORCID_ID === "0000-0000-0000-0000") {
+        const status = document.getElementById("orcid-status");
+        if (status && ORCID_ID === "0000-0000-0000-0000") {
+          status.textContent = "Add your ORCID iD in the code to automatically load the full publication list.";
+        }
+        return;
+      }
+
+      orcidLoaded = true;
+      const status = document.getElementById("orcid-status");
+
+      try {
+        const worksResponse = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/works`, {
+          headers: { Accept: "application/json" }
+        });
+
+        if (!worksResponse.ok) {
+          throw new Error("Could not fetch ORCID works.");
+        }
+
+        const worksData = await worksResponse.json();
+        const groups = worksData.group || [];
+        const publications = [];
+
+        groups.forEach(group => {
+          const summary = group["work-summary"] && group["work-summary"][0];
+          if (!summary) return;
+
+          const title = summary.title?.title?.value || "Untitled publication";
+          const type = summary.type || "other";
+          const year = summary["publication-date"]?.year?.value || "";
+          const journalTitle = summary["journal-title"]?.value || "";
+          let url = summary.url?.value || "";
+          const externalIds = summary["external-ids"]?.["external-id"] || [];
+
+          const doiEntry = externalIds.find(id =>
+            String(id["external-id-type"] || "").toLowerCase() === "doi"
+          );
+
+          const arxivEntry = externalIds.find(id =>
+            String(id["external-id-type"] || "").toLowerCase().includes("arxiv")
+          );
+
+          if (!url && doiEntry) {
+            url = `https://doi.org/${doiEntry["external-id-value"]}`;
+          }
+
+          if (!url && arxivEntry) {
+            url = `https://arxiv.org/abs/${arxivEntry["external-id-value"]}`;
+          }
+
+          if (!url) {
+            url = "https://scholar.google.com/scholar?q=" + encodeURIComponent(title);
+          }
+
+          publications.push({ title, type, year, journalTitle, url });
+        });
+
+        publications.sort((a, b) => String(b.year).localeCompare(String(a.year)));
+
+        renderPublications(publications);
+      } catch (error) {
+        status.textContent = "Could not load ORCID publications automatically. Please check the ORCID iD or use a cached publications JSON file.";
+      }
+    }
+
+    function renderPublications(publications) {
+      const containers = {
+        journal: document.getElementById("journal-publications"),
+        conference: document.getElementById("conference-publications"),
+        preprint: document.getElementById("preprint-publications"),
+        other: document.getElementById("other-publications")
+      };
+
+      const counts = {
+        journal: 0,
+        conference: 0,
+        preprint: 0,
+        other: 0
+      };
+
+      Object.values(containers).forEach(container => {
+        if (container) container.innerHTML = "";
+      });
+
+      const uniquePublications = removeDuplicatePublications(publications);
+      renderSelectedPublications(uniquePublications);
+
+      uniquePublications.forEach(pub => {
+        const category = mapPublicationToCategory(pub);
+        const container = containers[category] || containers.other;
+        if (!container) return;
+
+        counts[category] += 1;
+
+        const article = document.createElement("article");
+        article.className = "list-item";
+
+        const titleHtml = pub.url
+          ? `<a href="${escapeHtml(pub.url)}" target="_blank" rel="noreferrer">${escapeHtml(pub.title)}</a>`
+          : escapeHtml(pub.title);
+
+        article.innerHTML = `
+          <div>
+            <h2>${titleHtml}</h2>
+            <p>${escapeHtml([pub.journalTitle, pub.year].filter(Boolean).join(" · "))}</p>
+          </div>
+          <span class="tag tag-${category}">${getCategoryLabel(category)}</span>
+        `;
+
+        container.appendChild(article);
+      });
+
+      updatePublicationCounts(counts);
+      filterPublicationGroups(document.getElementById("publication-filter")?.value || "");
+    }
+
+    function renderSelectedPublications(publications) {
+      const container = document.getElementById("selected-publications");
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      const selectedPublications = SELECTED_PUBLICATION_TITLES
+        .map(selectedTitle => {
+          const selectedKey = normalizeTitle(selectedTitle);
+          return publications.find(pub => normalizeTitle(pub.title) === selectedKey);
+        })
+        .filter(Boolean);
+
+      selectedPublications.forEach(pub => {
+        const category = mapPublicationToCategory(pub);
+        const article = document.createElement("article");
+        article.className = "list-item";
+
+        const titleHtml = pub.url
+          ? `<a href="${escapeHtml(pub.url)}" target="_blank" rel="noreferrer">${escapeHtml(pub.title)}</a>`
+          : `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}" target="_blank" rel="noreferrer">${escapeHtml(pub.title)}</a>`;
+
+        article.innerHTML = `
+          <div>
+            <h2>${titleHtml}</h2>
+            <p>${escapeHtml([pub.journalTitle, pub.year].filter(Boolean).join(" · "))}</p>
+          </div>
+          <span class="tag tag-selected">${getCategoryLabel(category)}</span>
+        `;
+
+        container.appendChild(article);
+      });
+
+      if (!selectedPublications.length) {
+        container.innerHTML = `<p class="empty-note">No selected publications matched the ORCID list. Check the titles in SELECTED_PUBLICATION_TITLES.</p>`;
+      }
+
+      setCountText("selected-count", selectedPublications.length);
+    }
+
+    function removeDuplicatePublications(publications) {
+      const seen = new Set();
+
+      return publications.filter(pub => {
+        const key = normalizeTitle(pub.title);
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
+    function normalizeTitle(title) {
+      return String(title || "")
+        .toLowerCase()
+        .replace(/[–—]/g, "-")
+        .replace(/[^a-z0-9\s]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function getCategoryLabel(category) {
+      const labels = {
+        journal: "journal",
+        conference: "conference",
+        preprint: "preprint",
+        other: "other"
+      };
+
+      return labels[category] || "other";
+    }
+
+    function updatePublicationCounts(counts) {
+      const selectedTotal = document.querySelectorAll(".selected-publications .list-item").length;
+
+      if (!document.getElementById("selected-count")?.textContent) {
+        setCountText("selected-count", selectedTotal);
+      }
+      setCountText("journal-count", counts.journal);
+      setCountText("conference-count", counts.conference);
+      setCountText("preprint-count", counts.preprint);
+      setCountText("other-count", counts.other);
+    }
+
+    function setCountText(elementId, count) {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+      element.textContent = count > 1 ? `(${count})` : "";
+    }
+
+    function mapPublicationToCategory(pub) {
+      const type = String(pub.type || "").toLowerCase();
+      const title = String(pub.title || "").toLowerCase();
+      const venue = String(pub.journalTitle || "").toLowerCase();
+      const url = String(pub.url || "").toLowerCase();
+      const combined = `${type} ${title} ${venue} ${url}`;
+
+      // Preprints first: ORCID often stores arXiv records as type="journal-article".
+      if (
+        combined.includes("arxiv") ||
+        combined.includes("preprint") ||
+        combined.includes("working-paper") ||
+        combined.includes("biorxiv") ||
+        combined.includes("medrxiv") ||
+        combined.includes("ssrn")
+      ) {
+        return "preprint";
+      }
+
+      // Journals before conferences: IEEE Access is a journal, not a conference.
+      if (
+        venue.includes("ieee access") ||
+        venue.includes("scientific reports") ||
+        venue.includes("epj quantum technology") ||
+        venue.includes("transactions") ||
+        venue.includes("journal") ||
+        venue.includes("nature") ||
+        type.includes("journal")
+      ) {
+        return "journal";
+      }
+
+      if (
+        type.includes("conference") ||
+        type.includes("proceedings") ||
+        venue.includes("conference") ||
+        venue.includes("proceedings") ||
+        venue.includes("symposium") ||
+        venue.includes("workshop") ||
+        venue.includes("dac") ||
+        venue.includes("date") ||
+        venue.includes("qce") ||
+        venue.includes("icrc") ||
+        venue.includes("icsa")
+      ) {
+        return "conference";
+      }
+
+      return "other";
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    showPage(location.hash.replace("#", "") || "about");
+    filterPublicationGroups("");
+  </script>
+</body>
+</html>
