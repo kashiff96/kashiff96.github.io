@@ -375,6 +375,37 @@
       font-weight: 600;
     }
     .card { padding: 22px; }
+    .card {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card-icon {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    
+      font-size: 22px;
+    
+      opacity: 0.10;
+    
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+    }
+    
+    .focus-card .card-icon {
+      color: #2563eb;
+    }
+    
+    .broader-card .card-icon {
+      color: #7c3aed;
+    }
+    
+    .card:hover .card-icon {
+      transform: scale(1.08) rotate(-6deg);
+      opacity: 0.16;
+    }
     .card h2, .card h3 { font-size: 18px; margin-bottom: 8px; }
 
     .research-feature {
