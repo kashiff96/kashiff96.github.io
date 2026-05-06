@@ -493,9 +493,18 @@
       backdrop-filter: blur(8px);
     }
     
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      gap: 24px;
+      white-space: nowrap;
+      animation: tickerMove 28s linear infinite;
+    }
+    
     .ticker-track span {
       display: inline-flex;
       align-items: center;
+      flex: 0 0 auto;
     
       font-size: 13px;
       font-weight: 800;
@@ -517,8 +526,7 @@
     
       padding: 2px 4px;
     
-      animation:
-        gradientFlow 5s linear infinite;
+      animation: gradientFlow 5s linear infinite;
     }
     
     @keyframes tickerMove {
@@ -529,7 +537,7 @@
         transform: translateX(0);
       }
     }
-   
+    
     @keyframes gradientFlow {
       to {
         background-position: 220% center;
@@ -624,7 +632,7 @@
                target="_blank"
                rel="noreferrer">
                <i class="fa-solid fa-file-lines"></i>
-               <span>CV</span>
+               <span>View CV</span>
             </a>
           
             <a class="button linkedin"
