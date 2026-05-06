@@ -170,13 +170,45 @@
       gap: 8px;
     }
     
+    .social-actions .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .social-actions .button i,
+    .social-actions .button img {
+      transition: transform 0.2s ease;
+    }
+    
+    .social-actions .button:hover i,
+    .social-actions .button:hover img {
+      transform: scale(1.08);
+    }
+    
     .social-actions .button i {
       font-size: 16px;
     }
+    
     .social-icon {
       width: 16px;
       height: 16px;
       object-fit: contain;
+    }
+    
+    /* LinkedIn */
+    .social-actions .linkedin i {
+      color: #0A66C2;
+    }
+    
+    /* ORCID */
+    .social-actions .orcid i {
+      color: #A6CE39;
+    }
+    
+    /* CV */
+    .social-actions .cv i {
+      color: #F59E0B;
     }
     
     .social-actions .button:hover i {
@@ -429,7 +461,7 @@
 
           <div class="actions social-actions">
 
-            <a class="button primary"
+            <a class="button primary cv"
                href="cv.pdf"
                target="_blank"
                rel="noreferrer">
@@ -437,7 +469,7 @@
                <span>CV</span>
             </a>
           
-            <a class="button"
+            <a class="button linkedin"
                href="https://www.linkedin.com/in/muhammad-kashif-29191571/"
                target="_blank"
                rel="noreferrer">
@@ -446,18 +478,18 @@
             </a>
           
             <a class="button"
-             href="https://scholar.google.com/citations?hl=en&user=OqsN2QYAAAAJ&view_op=list_works&sortby=pubdate"
-             target="_blank"
-             rel="noreferrer">
+               href="https://scholar.google.com/citations?hl=en&user=OqsN2QYAAAAJ&view_op=list_works&sortby=pubdate"
+               target="_blank"
+               rel="noreferrer">
           
-             <img src="https://cdn.simpleicons.org/googlescholar"
-                  alt="Google Scholar"
-                  class="social-icon">
+               <img src="https://cdn.simpleicons.org/googlescholar"
+                    alt="Google Scholar"
+                    class="social-icon">
           
-             <span>Google Scholar</span>
-          </a>
+               <span>Google Scholar</span>
+            </a>
           
-            <a class="button"
+            <a class="button orcid"
                href="https://orcid.org/0000-0003-2023-6371"
                target="_blank"
                rel="noreferrer">
