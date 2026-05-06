@@ -218,8 +218,12 @@
 
     .social-actions {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: 1fr 1fr 1.35fr 1fr 1fr 1fr;
       gap: 12px;
+    }
+    .social-actions .button {
+      min-width: 0;
+      white-space: nowrap;
     }
     
     .social-actions .button {
