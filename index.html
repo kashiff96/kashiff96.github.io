@@ -493,37 +493,32 @@
       backdrop-filter: blur(8px);
     }
     
-    .ticker-track {
-      display: inline-flex;
-      gap: 18px;
-      white-space: nowrap;
-      animation: tickerMove 28s linear infinite;
-    }
-    
-    ..ticker-track span {
+    .ticker-track span {
       display: inline-flex;
       align-items: center;
     
-      font-size: 12px;
-      font-weight: 700;
-    
-      color: #1e3a8a;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
     
       background: linear-gradient(
-        135deg,
-        rgba(191, 219, 254, 0.82),
-        rgba(221, 214, 254, 0.78)
+        90deg,
+        #2563eb 0%,
+        #7c3aed 35%,
+        #0ea5e9 70%,
+        #2563eb 100%
       );
     
-      border: 1px solid rgba(147, 197, 253, 0.42);
+      background-size: 220% auto;
     
-      border-radius: 999px;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     
-      padding: 4px 11px;
+      padding: 2px 4px;
     
-      box-shadow:
-        0 4px 12px rgba(59, 130, 246, 0.08),
-        inset 0 1px 0 rgba(255,255,255,0.55);
+      animation:
+        gradientFlow 5s linear infinite;
     }
     
     @keyframes tickerMove {
@@ -532,6 +527,12 @@
       }
       to {
         transform: translateX(0);
+      }
+    }
+   
+    @keyframes gradientFlow {
+      to {
+        background-position: 220% center;
       }
     }
     
