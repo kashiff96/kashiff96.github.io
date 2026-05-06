@@ -149,7 +149,7 @@
     .glass-panel {
       position: relative;
     
-      padding: 22px 28px;
+      padding: 22px 22px;
     
       border-radius: 28px;
     
@@ -214,6 +214,17 @@
     
     .social-actions .button i {
       font-size: 15px;
+    }
+
+    .social-actions {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+    
+    .social-actions .button {
+      width: 100%;
+      white-space: nowrap;
     }
     
     .social-icon {
