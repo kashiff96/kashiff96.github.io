@@ -262,6 +262,29 @@
       margin-bottom: 18px;
     }
     .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .floating-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: -8px 0 18px;
+      padding: 12px;
+    
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.07);
+    }
+    
+    .floating-keywords span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      padding: 4px 8px;
+    }
     .profile-card h2 { font-size: 18px; margin-bottom: 6px; }
     .profile-card p, .card p, .timeline-item p, .contact-box p { font-size: 14px; color: var(--muted); }
 
@@ -512,15 +535,7 @@
         <div class="about-copy">
           <h1>Dr. Muhammad Kashif</h1>
           <p class="role-line">Research Team Lead, eBRAIN Lab · Postdoctoral Research Associate, CQTS, NYU Abu Dhabi</p>
-          <div class="keywords about-keywords hero-keywords" aria-label="Research keywords">
-            <span class="keyword">Quantum Machine Learning</span>
-            <span class="keyword">Hybrid Quantum Neural Networks</span>
-            <span class="keyword">Trainability</span>
-            <span class="keyword">Barren Plateaus</span>
-            <span class="keyword">Noise-resilient QNNs</span>
-            <span class="keyword">Quantum Architecture Search</span>
-            <span class="keyword">GenAI for Quantum</span>
-          </div>
+          
 
           <p class="lead bio-lead">
             I am a researcher in quantum machine learning and quantum algorithms, with a focus on designing trainable, noise-resilient, and hardware-aware quantum learning models for near-term quantum systems. My research investigates how hybrid quantum-classical architectures can be designed, analyzed, and benchmarked beyond idealized circuit assumptions. I am particularly interested in trainability, barren plateau mitigation, expressibility, quantum neural architecture search, quantum resource estimation, and practical quantum algorithms for real-world applications. I am also working at the intersection of generative AI and quantum computing, including domain-specific LLMs for efficient quantum code generation, curated quantum programming datasets, and benchmarking quantum code-generation models against state-of-the-art LLMs.
@@ -619,6 +634,16 @@
           <div class="photo-frame">
             <img src="profile.jpg" alt="Dr. Muhammad Kashif" />
           </div>
+          <div class="floating-keywords" aria-label="Research keywords">
+            <span>Quantum Machine Learning</span>
+            <span>HQNNs</span>
+            <span>Trainability</span>
+            <span>Barren Plateaus</span>
+            <span>Noise-resilient QNNs</span>
+            <span>QNAS</span>
+            <span>GenAI for Quantum</span>
+          </div>
+
           <h2>Muhammad Kashif</h2>
           <p>Quantum machine learning · Hybrid quantum neural networks · Quantum algorithms</p>
           <ul class="profile-list">
