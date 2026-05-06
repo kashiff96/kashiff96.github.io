@@ -500,16 +500,18 @@
           <p class="role-line">Research Team Lead, eBRAIN Lab · Postdoctoral Research Associate, CQTS, NYU Abu Dhabi</p>
 
           <p class="lead bio-lead">
-            I am a researcher in quantum machine learning and quantum algorithms, with a focus on designing trainable, noise-resilient, and hardware-aware quantum learning models for near-term quantum systems.
+            I am a researcher in quantum machine learning and quantum algorithms, with a focus on designing trainable, noise-resilient, and hardware-aware quantum learning models for near-term quantum systems. My research investigates how hybrid quantum-classical architectures can be designed, analyzed, and benchmarked beyond idealized circuit assumptions. I am particularly interested in trainability, barren plateau mitigation, expressibility, quantum neural architecture search, quantum resource estimation, and practical quantum algorithms for real-world applications. I am also working at the intersection of generative AI and quantum computing, including domain-specific LLMs for efficient quantum code generation, curated quantum programming datasets, and benchmarking quantum code-generation models against state-of-the-art LLMs.
+
+
           </p>
 
-          <p class="bio-text">
-            My research investigates how hybrid quantum-classical architectures can be designed, analyzed, and benchmarked beyond idealized circuit assumptions. I am particularly interested in trainability, barren plateau mitigation, expressibility, quantum neural architecture search, analytical quantum cost modeling, and practical quantum algorithms for real-world applications.
+          <!-- <p class="bio-text">
+            My research investigates how hybrid quantum-classical architectures can be designed, analyzed, and benchmarked beyond idealized circuit assumptions. I am particularly interested in trainability, barren plateau mitigation, expressibility, quantum neural architecture search, quantum resource estimation, and practical quantum algorithms for real-world applications.
           </p>
 
           <p class="bio-text">
             I am also working at the intersection of generative AI and quantum computing, including domain-specific LLMs for efficient quantum code generation, curated quantum programming datasets, and benchmarking quantum code-generation models against state-of-the-art LLMs.
-          </p>
+          </p> -->
 
           <div class="actions social-actions">
 
@@ -565,6 +567,10 @@
             <div class="metric-card">
               <span class="metric-number">29</span>
               <span class="metric-label">i10-index</span>
+            </div>
+            <div class="metric-card">
+              <span id="publication-count" class="metric-number">—</span>
+              <span class="metric-label">Publications</span>
             </div>
           
           </div>
@@ -959,6 +965,8 @@
       const counts = { journal: 0, conference: 0, preprint: 0, other: 0 };
       Object.values(containers).forEach(container => { if (container) container.innerHTML = ""; });
       const uniquePublications = removeDuplicatePublications(publications);
+      document.getElementById("publication-count").textContent =
+      uniquePublications.length;
       renderSelectedPublications(uniquePublications);
 
       uniquePublications.forEach(pub => {
