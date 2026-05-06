@@ -139,10 +139,45 @@
     .lead { font-size: 18px; color: var(--muted); max-width: 820px; }
 
     .about-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
-      gap: 46px;
-      align-items: start;
+      position: relative;
+    }
+    
+    .keyword-ribbon {
+      position: absolute;
+      right: 0;
+      bottom: -34px;
+    
+      max-width: 620px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 7px;
+    
+      padding: 10px 12px;
+      border-radius: 999px;
+    
+      background: rgba(255, 255, 255, 0.70);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
+    }
+    
+    .keyword-ribbon span {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      padding: 4px 8px;
+    }
+    
+    @media (max-width: 820px) {
+      .keyword-ribbon {
+        position: static;
+        justify-content: flex-start;
+        margin-top: 16px;
+        border-radius: 16px;
+      }
     }
 
     .about-copy h1 { margin-bottom: 10px; }
@@ -534,7 +569,7 @@
       <div class="about-hero">
         <div class="about-copy">
           <h1>Dr. Muhammad Kashif</h1>
-          <p class="role-line">Research Team Lead, eBRAIN Lab · Postdoctoral Research Associate, CQTS, NYU Abu Dhabi</p>
+          <p class="role-line">Research Team Lead, eBRAIN Lab · Postdoctoral Research Associate, CQTS, New York University (NYU) Abu Dhabi</p>
           
 
           <p class="lead bio-lead">
@@ -634,15 +669,7 @@
           <div class="photo-frame">
             <img src="profile.jpg" alt="Dr. Muhammad Kashif" />
           </div>
-          <div class="floating-keywords" aria-label="Research keywords">
-            <span>Quantum Machine Learning</span>
-            <span>HQNNs</span>
-            <span>Trainability</span>
-            <span>Barren Plateaus</span>
-            <span>Noise-resilient QNNs</span>
-            <span>QNAS</span>
-            <span>GenAI for Quantum</span>
-          </div>
+          
 
           <h2>Muhammad Kashif</h2>
           <p>Quantum machine learning · Hybrid quantum neural networks · Quantum algorithms</p>
@@ -653,6 +680,15 @@
             <li><strong>PhD:</strong> Computer Science and Engineering, Hamad Bin Khalifa University</li>
           </ul>
         </aside>
+        <div class="keyword-ribbon" aria-label="Research keywords">
+          <span>Quantum Machine Learning</span>
+          <span>HQNNs</span>
+          <span>Trainability</span>
+          <span>Barren Plateaus</span>
+          <span>Noise-resilient QNNs</span>
+          <span>QNAS</span>
+          <span>GenAI for Quantum</span>
+        </div>
       </div>
     </section>
 
