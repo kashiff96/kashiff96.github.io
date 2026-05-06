@@ -7,6 +7,7 @@
   <meta name="description" content="Research profile of Dr. Muhammad Kashif, working on quantum machine learning, hybrid quantum neural networks, trainability, GenAI for quantum, and quantum algorithms." />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
   <style>
     :root {
@@ -162,6 +163,19 @@
       border: 1px solid var(--border);
       color: var(--text);
       background: var(--surface);
+    }
+    .social-actions .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .social-actions .button i {
+      font-size: 16px;
+    }
+    
+    .social-actions .button:hover i {
+      transform: scale(1.08);
     }
     .button.primary { background: var(--accent); color: white; border-color: var(--accent); }
     .button:hover { text-decoration: none; transform: translateY(-1px); }
@@ -408,11 +422,40 @@
             I am also working at the intersection of generative AI and quantum computing, including domain-specific LLMs for efficient quantum code generation, curated quantum programming datasets, and benchmarking quantum code-generation models against state-of-the-art LLMs.
           </p>
 
-          <div class="actions">
-            <a class="button primary" href="cv.pdf" target="_blank" rel="noreferrer">CV</a>
-            <a class="button" href="https://www.linkedin.com/in/muhammad-kashif-29191571/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="button" href="https://scholar.google.com/citations?hl=en&user=OqsN2QYAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noreferrer">Google Scholar</a>
-            <a class="button" href="https://orcid.org/0000-0003-2023-6371" target="_blank" rel="noreferrer">ORCID</a>
+          <div class="actions social-actions">
+
+            <a class="button primary"
+               href="cv.pdf"
+               target="_blank"
+               rel="noreferrer">
+               <i class="fa-solid fa-file-lines"></i>
+               <span>CV</span>
+            </a>
+          
+            <a class="button"
+               href="https://www.linkedin.com/in/muhammad-kashif-29191571/"
+               target="_blank"
+               rel="noreferrer">
+               <i class="fa-brands fa-linkedin"></i>
+               <span>LinkedIn</span>
+            </a>
+          
+            <a class="button"
+               href="https://scholar.google.com/citations?hl=en&user=OqsN2QYAAAAJ&view_op=list_works&sortby=pubdate"
+               target="_blank"
+               rel="noreferrer">
+               <i class="fa-brands fa-google-scholar"></i>
+               <span>Scholar</span>
+            </a>
+          
+            <a class="button"
+               href="https://orcid.org/0000-0003-2023-6371"
+               target="_blank"
+               rel="noreferrer">
+               <i class="fa-brands fa-orcid"></i>
+               <span>ORCID</span>
+            </a>
+          
           </div>
 
           <div class="about-inline-cards">
