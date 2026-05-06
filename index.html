@@ -549,6 +549,50 @@
     .timeline-item { padding: 20px 22px; }
     .timeline-item h2, .timeline-item h3 { font-size: 17px; margin-bottom: 3px; }
     .timeline-item .meta { color: var(--light-muted); font-size: 13px; margin-bottom: 8px; }
+    .talk-venue-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    
+      margin-top: 12px;
+    
+      flex-wrap: wrap;
+    }
+    
+    .talk-venue-logo {
+      width: 22px;
+      height: 22px;
+    
+      object-fit: contain;
+    
+      opacity: 0.78;
+    
+      transition:
+        transform 0.22s ease,
+        opacity 0.22s ease;
+    }
+    
+    .timeline-item:hover .talk-venue-logo {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+    
+    .talk-venue-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    
+      width: 24px;
+      height: 24px;
+    
+      border-radius: 999px;
+    
+      background: rgba(237, 233, 254, 0.72);
+    
+      color: #6d28d9;
+    
+      font-size: 12px;
+    }
 
     .contact-box { padding: 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 0.6fr); gap: 28px; align-items: start; }
     .contact-links { display: grid; gap: 10px; font-size: 14px; }
@@ -1221,9 +1265,79 @@
         <p class="lead">Selected conference presentations and research talks.</p>
       </div>
       <div class="timeline">
-        <article class="timeline-item"><h2>ACM/IEEE Design Automation Conference (DAC)</h2><div class="meta">June 2025 · San Francisco, USA</div><p>Paper presentation on computational advantage in hybrid quantum neural networks.</p></article>
-        <article class="timeline-item"><h2>IEEE Quantum Week / QCE</h2><div class="meta">September 2025 · New Mexico, USA</div><p>Multiple paper Presentation research on quantum algorithms and quantum machine learning.</p></article>
-        <article class="timeline-item"><h2>IEEE International Conference on Rebooting Computing (ICRC)</h2><div class="meta">December 2024 · San Diego, USA</div><p>Paper Presentaion on dilemma of barren plateaus and random parameter initialization in quantum neural networks.</p></article>
+        <article class="timeline-item">
+          <h2>ACM/IEEE Design Automation Conference (DAC)</h2>
+        
+          <div class="meta">June 2025 · San Francisco, USA</div>
+        
+          <p>
+            Paper presentation on computational advantage in hybrid quantum neural networks.
+          </p>
+        
+          <div class="talk-venue-row">
+        
+            <img src="https://cdn.simpleicons.org/acm"
+                 alt="ACM"
+                 class="talk-venue-logo">
+        
+            <img src="https://cdn.simpleicons.org/ieee"
+                 alt="IEEE"
+                 class="talk-venue-logo">
+        
+            <div class="talk-venue-chip">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+        
+            <span>DAC</span>
+        
+          </div>
+        </article>        
+        <article class="timeline-item">
+          <h2>IEEE Quantum Week / QCE</h2>
+        
+          <div class="meta">September 2025 · New Mexico, USA</div>
+        
+          <p>
+            Multiple paper presentation research on quantum algorithms and quantum machine learning.
+          </p>
+        
+          <div class="talk-venue-row">
+        
+            <img src="https://cdn.simpleicons.org/ieee"
+                 alt="IEEE"
+                 class="talk-venue-logo">
+        
+            <div class="talk-venue-chip">
+              <i class="fa-solid fa-atom"></i>
+            </div>
+        
+            <span>Quantum Week</span>
+        
+          </div>
+        </article>
+        <article class="timeline-item">
+          <h2>IEEE International Conference on Rebooting Computing (ICRC)</h2>
+        
+          <div class="meta">December 2024 · San Diego, USA</div>
+        
+          <p>
+            Paper presentation on dilemma of barren plateaus and random parameter initialization in quantum neural networks.
+          </p>
+        
+          <div class="talk-venue-row">
+        
+            <img src="https://cdn.simpleicons.org/ieee"
+                 alt="IEEE"
+                 class="talk-venue-logo">
+        
+            <div class="talk-venue-chip">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+        
+            <span>ICRC</span>
+        
+          </div>
+        </article>
       </div>
     </section>
 
