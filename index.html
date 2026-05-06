@@ -163,6 +163,65 @@
         0 12px 38px rgba(15, 23, 42, 0.04),
         inset 0 1px 0 rgba(255,255,255,0.22);
     }
+    .bio-row {
+      display: grid;
+      grid-template-columns: 62px minmax(0, 1fr);
+      gap: 16px;
+      align-items: stretch;
+      margin: 18px 0 18px;
+    }
+    
+    .social-rail {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    
+    .rail-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+    
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(226, 232, 240, 0.92);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    
+      font-size: 22px;
+      color: var(--text);
+    
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+    }
+    
+    .rail-icon:hover {
+      transform: translateY(-2px) scale(1.06);
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.10);
+      border-color: rgba(29, 78, 216, 0.24);
+      text-decoration: none;
+    }
+    
+    .rail-img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+    
+    .rail-icon.cv i { color: #f59e0b; }
+    .rail-icon.linkedin i { color: #0A66C2; }
+    .rail-icon.orcid i { color: #A6CE39; }
+    .rail-icon.github i { color: #111827; }
+    .rail-icon.university i { color: #57068c; }
+    
+    .bio-row .glass-panel {
+      margin: 0;
+    }
     .role-line { color: var(--accent); font-weight: 600; margin-bottom: 20px; font-size: 16px; }
     .bio-lead { margin-bottom: 18px; }
     .bio-text { color: var(--muted); font-size: 16px; max-width: 780px; margin-bottom: 18px; }
@@ -855,6 +914,20 @@
       .nav { align-items: flex-start; flex-direction: column; padding: 16px 0; }
       .nav-links { width: 100%; gap: 14px; overflow-x: auto; padding-bottom: 4px; }
       .list-item { grid-template-columns: 1fr; gap: 8px; }
+      .bio-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .social-rail {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      
+      .rail-icon {
+        width: 48px;
+        height: 48px;
+      }
     }
   </style>
 </head>
@@ -941,86 +1014,41 @@
             I am also working at the intersection of generative AI and quantum computing, including domain-specific LLMs for efficient quantum code generation, curated quantum programming datasets, and benchmarking quantum code-generation models against state-of-the-art LLMs.
           </p> -->
           </div>
-          <div class="actions social-actions">
+          <div class="bio-row">
 
-            <a class="button primary cv"
-               href="cv.pdf"
-               target="_blank"
-               rel="noreferrer">
-               <i class="fa-solid fa-file-lines"></i>
-               <span>View CV</span>
-            </a>
+            <div class="social-rail" aria-label="Profile links">
           
-            <a class="button linkedin"
-               href="https://www.linkedin.com/in/muhammad-kashif-29191571/"
-               target="_blank"
-               rel="noreferrer">
-               <i class="fa-brands fa-linkedin"></i>
-               <span>LinkedIn</span>
-            </a>
+              <a class="rail-icon cv" href="cv.pdf" target="_blank" rel="noreferrer" aria-label="CV">
+                <i class="fa-solid fa-file-lines"></i>
+              </a>
           
-            <a class="button"
-               href="https://scholar.google.com/citations?hl=en&user=OqsN2QYAAAAJ&view_op=list_works&sortby=pubdate"
-               target="_blank"
-               rel="noreferrer">
+              <a class="rail-icon linkedin" href="https://www.linkedin.com/in/muhammad-kashif-29191571/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
           
-               <img src="https://cdn.simpleicons.org/googlescholar"
-                    alt="Google Scholar"
-                    class="social-icon">
+              <a class="rail-icon" href="https://scholar.google.com/citations?hl=en&user=OqsN2QYAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+                <img src="https://cdn.simpleicons.org/googlescholar" alt="" class="rail-img">
+              </a>
           
-               <span>Google Scholar</span>
-            </a>
+              <a class="rail-icon orcid" href="https://orcid.org/0000-0003-2023-6371" target="_blank" rel="noreferrer" aria-label="ORCID">
+                <i class="fa-brands fa-orcid"></i>
+              </a>
           
-            <a class="button orcid"
-               href="https://orcid.org/0000-0003-2023-6371"
-               target="_blank"
-               rel="noreferrer">
-               <i class="fa-brands fa-orcid"></i>
-               <span>ORCID</span>
-            </a>
-            <a class="button github"
-               href="https://github.com/kashiff96"
-               target="_blank"
-               rel="noreferrer">
-               <i class="fa-brands fa-github"></i>
-               <span>GitHub</span>
-            </a>
-            <a class="button university"
-               href="https://nyuad.nyu.edu/en/research/faculty-labs-and-projects/cqts/researchers/muhammad-kashif.html"
-               target="_blank"
-               rel="noreferrer">
-               <i class="fa-solid fa-building-columns"></i>
-               <span>NYUAD</span>
-            </a>
+              <a class="rail-icon github" href="https://github.com/kashiff96" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
           
-          </div>
-
-          <div class="scholar-metrics">
-            <a class="metric-card metric-link"
-               href="#publications"
-               data-page="publications">
-            
-              <i class="fa-solid fa-arrow-up-right-from-square metric-arrow"></i>
-            
-              <span id="publication-count" class="metric-number">—</span>
-              <span class="metric-label">Publications</span>
-            
-            </a>
-            <div class="metric-card">
-              <span class="metric-number">938+ </span>
-              <span class="metric-label">Citations</span>
+              <a class="rail-icon university" href="https://nyuad.nyu.edu/en/research/faculty-labs-and-projects/cqts/researchers/muhammad-kashif.html" target="_blank" rel="noreferrer" aria-label="NYUAD">
+                <i class="fa-solid fa-building-columns"></i>
+              </a>
+          
             </div>
           
-            <div class="metric-card">
-              <span class="metric-number">19</span>
-              <span class="metric-label">h-index</span>
+            <div class="glass-panel">
+              <p class="lead bio-lead">
+                I am a researcher in quantum machine learning and quantum algorithms, with a focus on designing trainable, noise-resilient, and hardware-aware quantum learning models for near-term quantum systems. My research investigates how hybrid quantum-classical architectures can be designed, analyzed, and benchmarked beyond idealized circuit assumptions. I am particularly interested in trainability, barren plateau mitigation, expressibility, quantum neural architecture search, quantum resource estimation, and practical quantum algorithms for real-world applications. I am also working at the intersection of generative AI and quantum computing, including domain-specific LLMs for efficient quantum code generation, curated quantum programming datasets, and benchmarking quantum code-generation models against state-of-the-art LLMs.
+              </p>
             </div>
-          
-            <div class="metric-card">
-              <span class="metric-number">29</span>
-              <span class="metric-label">i10-index</span>
-            </div>
-            
           
           </div>
 
