@@ -146,6 +146,23 @@
     }
 
     .about-copy h1 { margin-bottom: 10px; }
+    .glass-panel {
+      position: relative;
+    
+      padding: 22px 28px;
+    
+      border-radius: 28px;
+    
+      background: rgba(255, 255, 255, 0.24);
+    
+      backdrop-filter: blur(10px);
+    
+      border: 1px solid rgba(255, 255, 255, 0.28);
+    
+      box-shadow:
+        0 12px 38px rgba(15, 23, 42, 0.04),
+        inset 0 1px 0 rgba(255,255,255,0.22);
+    }
     .role-line { color: var(--accent); font-weight: 600; margin-bottom: 20px; font-size: 16px; }
     .bio-lead { margin-bottom: 18px; }
     .bio-text { color: var(--muted); font-size: 16px; max-width: 780px; margin-bottom: 18px; }
@@ -835,7 +852,7 @@
   <main class="container">
     <section id="about" class="page active" data-title="About">
       <div class="about-hero">
-        <div class="about-copy">
+        <div class="about-copy glass-panel">
           
           <h1>Dr. Muhammad Kashif</h1>
           <p class="role-line">Research Team Lead, eBRAIN Lab · Postdoctoral Research Associate, CQTS, New York University (NYU) Abu Dhabi</p>
