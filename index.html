@@ -715,7 +715,16 @@
     .tag-conference { color: #1e40af; background: #dbeafe; }
     .tag-preprint { color: #6d28d9; background: #ede9fe; }
     .tag-other { color: #374151; background: #f3f4f6; }
-
+    .award-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 8px;
+      color: #7c2d12;
+      background: linear-gradient(135deg, #fef3c7, #fed7aa);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      vertical-align: middle;
+    }
     .mentoring-grid { display: grid; gap: 30px; }
     .student-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .mentor-card { padding: 18px 20px; }
@@ -1330,7 +1339,6 @@
       </div>
 
       <div class="pub-section">
-        <span class="tag tag-selected">Best Paper Nominee</span>
         <div class="subsection-heading compact-heading">
           <h2 class="section-title-pill selected-title">Selected Publications <span id="selected-count" class="count-badge"></span></h2>
           <p>Highlighted papers related to quantum machine learning, hybrid quantum neural networks, trainability, and quantum algorithms.</p>
@@ -1614,6 +1622,9 @@
     let orcidLoaded = false;
 
     const SELECTED_PUBLICATION_TITLES = [
+      const AWARD_PUBLICATION_TITLES = {
+        "A PennyLane-Centric Dataset to Enhance LLM-based Quantum Code Generation using RAG": "Best Paper Nominee"
+      };
       "Closing the Loop: Resource-aware Hybrid NAS Guided by Analytical and Hardware-Calibrated Quantum Cost Modeling",
       "Late Breaking Results: Hardware-Aware Compilation Reshapes Trainability in Variational Quantum Circuits",
       "Computational Advantage in Hybrid Quantum Neural Networks: Myth or Reality?",
@@ -1649,6 +1660,16 @@
         });
 
         publications.sort((a, b) => String(b.year).localeCompare(String(a.year)));
+        function getAwardBadge(title) {
+          const matchedAwardTitle = Object.keys(AWARD_PUBLICATION_TITLES).find(
+            awardTitle => normalizeTitle(title).includes(normalizeTitle(awardTitle)) ||
+                          normalizeTitle(awardTitle).includes(normalizeTitle(title))
+          );
+        
+          if (!matchedAwardTitle) return "";
+        
+          return `<span class="tag award-tag"><i class="fa-solid fa-trophy"></i> ${escapeHtml(AWARD_PUBLICATION_TITLES[matchedAwardTitle])}</span>`;
+}
         renderPublications(publications);
       } catch (error) {
         renderPublications([]);
@@ -1677,8 +1698,8 @@
         const article = document.createElement("article");
         article.className = "list-item";
         const titleHtml = pub.url ? `<a href="${escapeHtml(pub.url)}" target="_blank" rel="noreferrer">${escapeHtml(pub.title)}</a>` : escapeHtml(pub.title);
-        article.innerHTML = `<div><h2>${titleHtml}</h2><p>${escapeHtml([pub.journalTitle, pub.year].filter(Boolean).join(" · "))}</p></div><span class="tag tag-${category}">${getCategoryLabel(category)}</span>`;
-        container.appendChild(article);
+        const awardBadge = getAwardBadge(pub.title);
+        article.innerHTML = `<div><h2>${titleHtml} ${awardBadge}</h2><p>${escapeHtml([pub.journalTitle, pub.year].filter(Boolean).join(" · "))}</p></div><span class="tag tag-${category}">${getCategoryLabel(category)}</span>`;        container.appendChild(article);
       });
 
       updatePublicationCounts(counts);
@@ -1699,9 +1720,9 @@
         const article = document.createElement("article");
         article.className = "list-item";
         const titleHtml = pub.url ? `<a href="${escapeHtml(pub.url)}" target="_blank" rel="noreferrer">${escapeHtml(pub.title)}</a>` : `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}" target="_blank" rel="noreferrer">${escapeHtml(pub.title)}</a>`;
-        article.innerHTML = `<div><h2>${titleHtml}</h2><p>${escapeHtml([pub.journalTitle, pub.year].filter(Boolean).join(" · "))}</p></div><span class="tag tag-selected">${getCategoryLabel(category)}</span>`;
-        container.appendChild(article);
-      });
+        const awardBadge = getAwardBadge(pub.title);
+        article.innerHTML = `<div><h2>${titleHtml} ${awardBadge}</h2><p>${escapeHtml([pub.journalTitle, pub.year].filter(Boolean).join(" · "))}</p></div><span class="tag tag-selected">${getCategoryLabel(category)}</span>`;        container.appendChild(article);
+              });
 
       if (!selectedPublications.length) {
         container.innerHTML = `<p class="empty-note">Selected publications will appear after ORCID publications are loaded.</p>`;
