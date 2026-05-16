@@ -682,8 +682,15 @@
     }
     .selected-title { color: #7c2d12; background: #ffedd5; }
     .journal-title { color: #065f46; background: #d1fae5; }
-    .conference-title { color: #1e40af; background: #dbeafe; }
-    .preprint-title { color: #6d28d9; background: #ede9fe; }
+    .conference-title {
+      color: #0f766e;
+      background: #ccfbf1;
+    }
+
+    .preprint-title {
+      color: #be185d;
+      background: #fce7f3;
+    }
     .other-title { color: #374151; background: #f3f4f6; }
     .count-badge { font-size: 13px; font-weight: 600; opacity: 0.85; }
 
@@ -1630,7 +1637,8 @@
     ];
 
     const AWARD_PUBLICATION_TITLES = {
-      "A PennyLane-Centric Dataset to Enhance LLM-based Quantum Code Generation using RAG": "Best Paper Nominee"
+      "A PennyLane-Centric Dataset to Enhance LLM-based Quantum Code Generation using RAG": "Best Paper Nominee, IJCNN 2026"
+      "Design Space Exploration of Hybrid Quantum Neural Networks for Chronic Kidney Disease": "Best Paper Nominee, IJCNN 2026"
     };
 
     function getAwardBadge(title) {
